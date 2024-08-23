@@ -7,6 +7,8 @@
 
 .app__content {
   max-width: 1360px;
+  /*
   min-width: fit-content;
+  */
   margin: 0 auto;
 }
