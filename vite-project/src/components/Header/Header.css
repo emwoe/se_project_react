@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.header__left {
+  display: flex;
+  flex-direction: row;
+  min-width: fit-content;
+}
+
+.header__right {
+  display: flex;
+  flex-direction: row;
+  min-width: fit-content;
+}
+
+.header__logo {
+  height: 32px;
+  margin: auto 24px 20px 0;
+}
+
+.header__add-clothes-btn {
+  border: none;
+  min-width: fit-content;
+  background-color: #f3f3f3;
+  font-family: "Cabinet Grotesk";
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  margin-right: 20px;
+}
+
+.header__name {
+  min-width: fit-content;
+}
+
+.header__avatar {
+  height: 40px;
+  width: 40px;
+  margin: auto 0;
+  padding-left: 12px;
+  border-radius: 1px;
+  border-color: rgba(0, 0, 0, 0.5);
+}
