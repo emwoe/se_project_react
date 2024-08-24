@@ -1,4 +1,14 @@
-.cards__items-container {
-  display: flex;
-  flex-direction: row;
+.cards__text {
+  margin: 40px 0 0 0;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.8px;
+}
+
+.cards__list {
+  margin: 34px 0 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
