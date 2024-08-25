@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from "react";
 
 import "./App.css";
 import Header from "../Header/Header";
@@ -18,12 +19,21 @@ function App() {
 
   const handleModalClose = () => {
     setActiveModal("");
-    console.log("Closed!");
   };
 
-  const findTarget = (evt) => {
-    console.log(evt.target);
-  };
+  React.useEffect(() => {
+    function handleEscClose(evt) {
+      evt.key === "Escape" && handleModalClose();
+    }
+
+    if (activeModal !== "") {
+      document.addEventListener("keydown", handleEscClose);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   return (
     <div className="app">
@@ -37,7 +47,6 @@ function App() {
         buttonText="Add garment"
         name="garment"
         activeModal={activeModal}
-        findTarget={findTarget}
         handleModalClose={handleModalClose}
       >
         <NewGarmentForm />
