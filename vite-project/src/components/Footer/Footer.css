@@ -1,8 +1,12 @@
 .footer {
+  background-color: #f3f3f3;
+  font-family: "Cabinet Grotesk";
+  max-width: 1360px;
   font-size: 16x;
   line-height: 20px;
-  margin-top: 15%;
+  padding-top: 24px;
   padding-bottom: 24px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }

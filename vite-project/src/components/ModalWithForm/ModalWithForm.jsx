@@ -1,62 +1,33 @@
 import "./ModalWithForm.css";
 import closebtn from "../../assets/closebtn.png";
 
-function ModalWithForm({ modalForm }) {
+function ModalWithForm({
+  title,
+  buttonText,
+  name,
+  activeModal,
+  handleModalClose,
+  children,
+}) {
   return (
-    <div className="modal">
+    <div
+      className={`modal modal_type_${name} ${
+        activeModal === "add-garment" && "modal__opened"
+      }`}
+    >
       <form className="modal__form">
-        <button type="button" className="modal__close-btn">
+        <button
+          type="button"
+          className="modal__close-btn"
+          onClick={handleModalClose}
+        >
           <img className="modal__close-btn-img" src={closebtn}></img>
         </button>
-        <h3 className="modal__title">New garment</h3>
-        <label className="modal__label" htmlFor="name">
-          Name
-        </label>
-        <input
-          type="text"
-          className="modal__input"
-          id="name"
-          placeholder="Name"
-        ></input>
-        <label className="modal__label" htmlFor="imageUrl">
-          Image
-        </label>
-        <input
-          type="url"
-          className="modal__input"
-          id="imageUrl"
-          placeholder="Image URL"
-        ></input>
-        <fieldset className="modal__radio-buttons">
-          <legend className="modal__legend">Select the weather type</legend>
-          <div className="modal__radio-pairs">
-            <input className="modal__radio-input" type="radio" id="hot"></input>
-            <label className="modal__radio-label" htmlFor="hot">
-              Hot
-            </label>
-          </div>
-          <div className="modal__radio-pairs">
-            <input
-              className="modal__radio-input"
-              type="radio"
-              id="warm"
-            ></input>
-            <label htmlFor="warm" className="modal__radio-label">
-              Warm
-            </label>
-          </div>
-          <div className="modal__radio-pairs">
-            <input
-              className="modal__radio-input"
-              type="radio"
-              id="cold"
-            ></input>
-            <label htmlFor="cold" className="modal__radio-label">
-              Cold
-            </label>
-          </div>
-        </fieldset>
-        <button className="modal__submit-btn">Add garment</button>
+        <h3 className="modal__title">{title}</h3>
+        {children}
+        <button type="submit" className="modal__submit-btn">
+          {buttonText}
+        </button>
       </form>
     </div>
   );

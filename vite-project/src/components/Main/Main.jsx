@@ -26,3 +26,7 @@ function Main({ weatherData }) {
 }
 
 export default Main;
+
+/* .filter((item) => {
+    return item.weather === weatherData.type;
+  }) */
