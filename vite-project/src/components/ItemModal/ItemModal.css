@@ -1,0 +1,29 @@
+.modal__card {
+  max-width: 496px;
+  position: relative;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal__item-image {
+  max-width: 496px;
+}
+
+.modal__footer {
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 32px;
+}
+
+.modal__item-name,
+.modal__item-weather {
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0 0 0 32px;
+}
+
+.modal__item-weather {
+  margin-top: 12px;
+}

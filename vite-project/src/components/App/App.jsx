@@ -16,20 +16,17 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
-  };
-
-  const handleCardClick = (item) => {
-    setActiveModal("item-card");
-    setItemForModal(item);
+    console.log("Modal should open");
   };
 
   const handleModalClose = () => {
     setActiveModal("");
   };
 
-  const handleItemCardClick = () => {
-    console.log("clicked!");
-    setItemForModal({ item });
+  const handleItemCardClick = (card) => {
+    setActiveModal("item-card");
+    setItemForModal(card);
+    console.log(card);
   };
 
   React.useEffect(() => {
@@ -38,8 +35,11 @@ function App() {
     }
 
     function handleRemoteClick(evt) {
-      const target = document.querySelector(".modal");
-      if (evt.target === target) {
+      const modaloverlay = document.querySelector(".modal__overlay");
+      const itemmodaloverlay = document.querySelector(
+        ".modal__overlay_type_item"
+      );
+      if (evt.target === modaloverlay || evt.target === itemmodaloverlay) {
         setActiveModal("");
       }
     }
@@ -75,7 +75,11 @@ function App() {
       >
         <NewGarmentForm />
       </ModalWithForm>
-      <ItemModal />
+      <ItemModal
+        activeModal={activeModal}
+        itemForModal={itemForModal}
+        handleModalClose={handleModalClose}
+      />
     </div>
   );
 }
