@@ -1,0 +1,38 @@
+export const getWeather = ({ latitude, longitude }, APIkey) => {
+  return fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
+  ).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Error: ${res.status}`);
+    }
+  });
+};
+
+export const filterWeatherData = (data) => {
+  const result = {};
+  const temp = Math.round(data.main.temp);
+  if (temp >= 86) {
+    result.type = "hot";
+  } else if (temp >= 66) {
+    result.type = "warm";
+  } else {
+    result.type = "cold";
+  }
+  const weatherCode = data.weather[0].id;
+  if (weatherCode < 623 && weatherCode > 599) {
+    result.condition = "snow";
+  } else if (weatherCode < 532 && weatherCode > 299) {
+    result.condition = "rain";
+  } else if ((weatherCode > 199 && weatherCode < 233) || weatherCode === 781) {
+    result.condition = "storm";
+  } else if (weatherCode == 800) {
+    result.condition = "clear";
+  } else if (800 < weatherCode) {
+    result.condition = "clouds";
+  }
+  result.city = data.name;
+  result.temp = temp;
+  return result;
+};
