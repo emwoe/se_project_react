@@ -3,38 +3,65 @@ function NewGarmentForm() {
     <>
       <label className="modal__label" htmlFor="name">
         Name
+        <span className="modal__input-error name-input-error"></span>
       </label>
       <input
         type="text"
         className="modal__input"
         id="name"
         placeholder="Name"
+        required
+        minLength="2"
+        maxLength="40"
       ></input>
+
       <label className="modal__label" htmlFor="imageUrl">
         Image
+        <span className="modal__input-error imageUrl-input-error"></span>
       </label>
       <input
         type="url"
+        required
         className="modal__input"
         id="imageUrl"
         placeholder="Image URL"
       ></input>
-      <fieldset className="modal__radio-buttons">
-        <legend className="modal__legend">Select the weather type</legend>
+
+      <fieldset className="modal__radio-buttons" id="fieldset">
+        <legend className="modal__legend">
+          Select the weather type
+          <span className="modal__input-error fieldset-input-error"></span>
+        </legend>
         <div className="modal__radio-pairs">
-          <input className="modal__radio-input" type="radio" id="hot"></input>
+          <input
+            className="modal__radio-input"
+            type="radio"
+            name="weather-type"
+            id="hot"
+            required
+          ></input>
           <label className="modal__radio-label" htmlFor="hot">
             Hot
           </label>
         </div>
         <div className="modal__radio-pairs">
-          <input className="modal__radio-input" type="radio" id="warm"></input>
+          <input
+            className="modal__radio-input"
+            type="radio"
+            name="weather-type"
+            id="warm"
+          ></input>
           <label htmlFor="warm" className="modal__radio-label">
             Warm
           </label>
         </div>
         <div className="modal__radio-pairs">
-          <input className="modal__radio-input" type="radio" id="cold"></input>
+          <input
+            className="modal__radio-input"
+            type="radio"
+            name="weather-type"
+            id="cold"
+          ></input>
           <label htmlFor="cold" className="modal__radio-label">
             Cold
           </label>

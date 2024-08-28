@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   font-size: 20px;
@@ -18,9 +19,18 @@
   min-width: fit-content;
 }
 
+.header__mobile-close-btn {
+  display: none;
+}
+
 .header__logo {
+  width: 89px;
   height: 32px;
   margin: auto 24px 20px 0;
+}
+
+.header__hamburger-menu {
+  display: none;
 }
 
 .header__add-clothes-btn {
@@ -45,4 +55,74 @@
   padding-left: 12px;
   border-radius: 1px;
   border-color: rgba(0, 0, 0, 0.5);
+}
+
+@media all and (max-width: 750px) {
+  .header__left {
+    flex-direction: column;
+  }
+
+  .header__hamburger-menu {
+    display: block;
+    margin-top: 18px;
+    height: 44px;
+    width: 44px;
+    border: 1x solid black;
+  }
+
+  .header__right {
+    display: none;
+  }
+
+  .header__right_mobile {
+    display: flex;
+    z-index: 99;
+    background-color: white;
+    width: 343px;
+    height: 208px;
+    border-radius: 10px;
+    position: fixed;
+    right: 10px;
+    top: 20px;
+  }
+
+  .header__mobile-close-btn_visible {
+    display: inline;
+    width: 15px;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    height: 0;
+    padding: 0;
+    border: 0;
+    margin: 0;
+  }
+
+  .header__add-clothes-btn {
+    background-color: white;
+    position: absolute;
+    top: 124px;
+    left: 100px;
+  }
+
+  .header__name {
+    margin: 68px 12px 0 70px;
+  }
+
+  .header__avatar {
+    margin-top: 68px;
+  }
+
+  .header__logo {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  .header__date-place {
+    margin: 32px 0 12px 0;
+  }
+
+  .header__hamburger-menu_hidden {
+    display: none;
+  }
 }

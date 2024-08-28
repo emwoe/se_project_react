@@ -5,6 +5,8 @@
   border-width: 1px;
   max-width: 323px;
   max-height: 326px;
+  min-width: 164px;
+  min-height: 164px;
   position: relative;
   overflow: hidden;
 }

@@ -31,6 +31,16 @@ export const filterWeatherData = (data) => {
     result.condition = "clear";
   } else if (800 < weatherCode) {
     result.condition = "clouds";
+  } else if (weatherCode === 701 || weatherCode === 741) {
+    result.condition = "fog";
+  }
+  if (
+    data.sys.sunrise < Date.now() / 1000 &&
+    data.sys.sunset > Date.now / 1000
+  ) {
+    result.isDay = true;
+  } else {
+    result.isDay = false;
   }
   result.city = data.name;
   result.temp = temp;

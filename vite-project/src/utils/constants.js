@@ -92,3 +92,13 @@ export const defaultClothingItems = [
 
 export const APIkey = "c9b970b50ab04e7a23c36e7f3e95b493";
 export const coordinates = { latitude: 30.267153, longitude: -97.743057 };
+
+export const validationConfig = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-btn",
+  inactiveButtonClass: "modal__btn_inactive",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__input-error_active",
+  errorMessageSelectorSuffix: "-input-error",
+};

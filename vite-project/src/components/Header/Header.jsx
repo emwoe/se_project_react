@@ -1,8 +1,16 @@
 import headerLogo from "../../assets/wtwr.png";
 import avatar from "../../assets/avatar.png";
+import closebtn from "../../assets/closebtn.png";
+import hamburger from "../../assets/hamburgermenu.png";
 import "./Header.css";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({
+  handleAddClick,
+  handleHamburgerClick,
+  handleMenuClose,
+  isMobileMenuOpen,
+  weatherData,
+}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -16,7 +24,11 @@ function Header({ handleAddClick, weatherData }) {
           {currentDate}, {weatherData.city}
         </p>
       </div>
-      <div className="header__right">
+      <div
+        className={`header__right ${
+          isMobileMenuOpen === true && "header__right_mobile"
+        }`}
+      >
         <button
           type="button"
           onClick={handleAddClick}
@@ -24,9 +36,30 @@ function Header({ handleAddClick, weatherData }) {
         >
           + Add clothes
         </button>
-        <p className="header__name">Emma Woelk</p>
+        <button
+          type="button"
+          onClick={handleMenuClose}
+          className={`header__mobile-close-btn ${
+            isMobileMenuOpen === true && "header__mobile-close-btn_visible"
+          }`}
+        >
+          <img
+            className="header__mobile-img"
+            src={closebtn}
+            alt="exit button"
+          ></img>
+        </button>
+        <p className="header__name">Terrence Tegegne</p>
         <img className="header__avatar" src={avatar}></img>
       </div>
+      <img
+        src={hamburger}
+        alt="menu"
+        className={`header__hamburger-menu ${
+          isMobileMenuOpen === true && "header__hamburger-menu_hidden"
+        }`}
+        onClick={handleHamburgerClick}
+      ></img>
     </header>
   );
 }

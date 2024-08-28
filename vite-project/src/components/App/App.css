@@ -2,13 +2,20 @@
   background-color: #f3f3f3;
   font-family: "Cabinet Grotesk";
   font-weight: bold;
-  width: 100%;
+  width: 100vw;
   height: fit-content;
 }
 
 .app__content {
   max-width: 1360px;
+  width: 100vw;
   height: 100vh;
   margin: 0 auto;
   position: relative;
+}
+
+@media all and (max-width: 1360px) {
+  .app__content {
+    max-width: 90%;
+  }
 }
