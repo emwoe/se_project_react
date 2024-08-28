@@ -1,10 +1,12 @@
 import "./WeatherCard.css";
 import { weatherOptions } from "../../../utils/constants";
-import clear from "../../../assets/sunny.png";
 
 function WeatherCard({ weatherData }) {
   const weatherOptionArray = weatherOptions.filter((option) => {
-    return option.condition === weatherData.condition && option.day == false;
+    return (
+      option.condition === weatherData.condition &&
+      option.day == weatherData.isDay
+    );
   });
 
   const weatherOptionURL = weatherOptionArray[0]?.url;

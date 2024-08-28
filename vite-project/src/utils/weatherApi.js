@@ -36,7 +36,7 @@ export const filterWeatherData = (data) => {
   }
   if (
     data.sys.sunrise < Date.now() / 1000 &&
-    data.sys.sunset > Date.now / 1000
+    data.sys.sunset > Date.now() / 1000
   ) {
     result.isDay = true;
   } else {

@@ -18,7 +18,7 @@ function App() {
     temp: 999,
     city: "",
     condition: "",
-    isDay: true,
+    isDay: "true",
   });
   const [activeModal, setActiveModal] = useState("");
   const [itemForModal, setItemForModal] = useState({});
