@@ -1,11 +1,11 @@
 import "./ItemModal.css";
-import closebtnwhite from "../../assets/closebtnwhite.png";
+import closeBtnWhite from "../../assets/closebtnwhite.png";
 
 function ItemModal({ activeModal, itemForModal, handleModalClose }) {
   return (
     <div
-      className={`modal modal_type_${name} ${
-        activeModal === "item-card" && "modal__opened"
+      className={`modal modal_type_item ${
+        activeModal === "item-card" && "modal_opened"
       }`}
     >
       <div className="modal__overlay modal__overlay_type_item">
@@ -15,7 +15,11 @@ function ItemModal({ activeModal, itemForModal, handleModalClose }) {
             className="modal__close-btn"
             onClick={handleModalClose}
           >
-            <img className="modal__close-btn-img" src={closebtnwhite}></img>
+            <img
+              alt="x to close"
+              className="modal__close-btn-img"
+              src={closeBtnWhite}
+            ></img>
           </button>
           <img
             className="modal__item-image"

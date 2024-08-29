@@ -47,6 +47,7 @@ function App() {
     setIsMobileMenuOpen(false);
   };
 
+  /* Tried to replace below with hook and couldn't get it to work. Not sure what was wrong. */
   const formValidators = {};
 
   const enableValidation = (validationConfig) => {
@@ -79,6 +80,7 @@ function App() {
       evt.key === "Escape" && handleModalClose();
     }
 
+    /*
     function handleRemoteClick(evt) {
       const modaloverlay = document.querySelector(".modal__overlay");
       const itemmodaloverlay = document.querySelector(
@@ -86,6 +88,13 @@ function App() {
       );
       if (evt.target === modaloverlay || evt.target === itemmodaloverlay) {
         setActiveModal("");
+      }
+    }
+      */
+
+    function handleRemoteClick(evt) {
+      if (evt.target.classList.contains("modal__overlay")) {
+        handleModalClose();
       }
     }
 
@@ -121,8 +130,8 @@ function App() {
         title="New garment"
         buttonText="Add garment"
         name="garment"
-        activeModal={activeModal}
         handleModalClose={handleModalClose}
+        isOpen={activeModal === "add-garment"}
       >
         <NewGarmentForm />
       </ModalWithForm>

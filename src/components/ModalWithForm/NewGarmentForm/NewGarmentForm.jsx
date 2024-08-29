@@ -1,4 +1,10 @@
+import { useFormAndValidation } from "../../../hooks/useFormAndValidation";
 function NewGarmentForm() {
+  /* Tried using the hook for validation, but couldn't get it to work
+  const { values, handleChange, errors, isValid, setValues, resetForm } =
+    useFormAndValidation();
+    */
+
   return (
     <>
       <label className="modal__label" htmlFor="name">
@@ -14,7 +20,6 @@ function NewGarmentForm() {
         minLength="2"
         maxLength="40"
       ></input>
-
       <label className="modal__label" htmlFor="imageUrl">
         Image
         <span className="modal__input-error imageUrl-input-error"></span>
@@ -26,7 +31,6 @@ function NewGarmentForm() {
         id="imageUrl"
         placeholder="Image URL"
       ></input>
-
       <fieldset className="modal__radio-buttons" id="fieldset">
         <legend className="modal__legend">
           Select the weather type

@@ -50,7 +50,7 @@ function Header({
           ></img>
         </button>
         <p className="header__name">Terrence Tegegne</p>
-        <img className="header__avatar" src={avatar}></img>
+        <img alt="avatar" className="header__avatar" src={avatar}></img>
       </div>
       <img
         src={hamburger}
