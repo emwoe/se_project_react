@@ -1,0 +1,79 @@
+.ToggleSwitch__input {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.ToggleSwitch__label {
+  margin: auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 56px;
+  height: 28px;
+  background: white;
+  border: 2px solid #7e7e7e;
+  border-radius: 100px;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.ToggleSwitch__left {
+  z-index: 1;
+  color: white;
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+.ToggleSwitch__right {
+  color: #7e7e7e;
+  font-size: 14px;
+  padding-right: 10px;
+}
+
+.ToggleSwitch__label:hover {
+  border-color: black;
+}
+
+.ToggleSwitch__label:hover .ToggleSwitch__right {
+  color: black;
+}
+
+.ToggleSwitch__label .ToggleSwitch__span {
+  content: "";
+  position: absolute;
+  /*
+  top: 2px;
+  left: 2px;
+  */
+  width: 28px;
+  height: 28px;
+  border-radius: 28px;
+  transition: 0.2s;
+  background: #000;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+
+.ToggleSwitch__input:checked + .ToggleSwitch__label .ToggleSwitch__span {
+  left: calc(100%);
+  transform: translateX(-100%);
+}
+
+.ToggleSwitch__input:checked + .ToggleSwitch__label .ToggleSwitch__right {
+  z-index: 1;
+  color: white;
+}
+
+.ToggleSwitch__input:checked + .ToggleSwitch__label .ToggleSwitch__left {
+  z-index: 1;
+  color: #7e7e7e;
+}
+
+.ToggleSwitch__input:checked + .ToggleSwitch__label:hover .ToggleSwitch__left {
+  color: black;
+}
+
+.ToggleSwitch__label:active .ToggleSwitch__span {
+  width: 30px;
+}

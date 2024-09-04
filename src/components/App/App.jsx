@@ -23,6 +23,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [itemForModal, setItemForModal] = useState({});
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [toggleSwitchSetting, setToggleSwitchSetting] = useState(true);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -45,6 +46,10 @@ function App() {
 
   const handleMenuClose = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const handleToggleSwitch = () => {
+    setToggleSwitchSetting(!toggleSwitchSetting);
   };
 
   /* Tried to replace below with hook and couldn't get it to work. Not sure what was wrong. */
@@ -116,6 +121,7 @@ function App() {
         <Header
           handleAddClick={handleAddClick}
           handleHamburgerClick={handleHamburgerClick}
+          handleToggleSwitch={handleToggleSwitch}
           handleMenuClose={handleMenuClose}
           isMobileMenuOpen={isMobileMenuOpen}
           weatherData={weatherData}

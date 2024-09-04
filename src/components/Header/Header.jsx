@@ -2,12 +2,14 @@ import headerLogo from "../../assets/wtwr.png";
 import avatar from "../../assets/avatar.png";
 import closebtn from "../../assets/closebtn.png";
 import hamburger from "../../assets/hamburgermenu.png";
+import ToggleSwitch from "./ToggleSwitch/ToggleSwitch";
 import "./Header.css";
 
 function Header({
   handleAddClick,
   handleHamburgerClick,
   handleMenuClose,
+  handleToggleSwitch,
   isMobileMenuOpen,
   weatherData,
 }) {
@@ -29,6 +31,7 @@ function Header({
           isMobileMenuOpen === true && "header__right_mobile"
         }`}
       >
+        <ToggleSwitch handleToggleSwitch={handleToggleSwitch} />
         <button
           type="button"
           onClick={handleAddClick}
