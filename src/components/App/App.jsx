@@ -11,11 +11,13 @@ import NewGarmentForm from "../ModalWithForm/NewGarmentForm/NewGarmentForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
 import FormValidator from "../../utils/FormValidator";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
     temp: 999,
+    temp_c: 888,
     city: "",
     condition: "",
     isDay: "true",
@@ -23,7 +25,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [itemForModal, setItemForModal] = useState({});
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [toggleSwitchSetting, setToggleSwitchSetting] = useState(true);
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -49,7 +51,9 @@ function App() {
   };
 
   const handleToggleSwitch = () => {
-    setToggleSwitchSetting(!toggleSwitchSetting);
+    currentTemperatureUnit === "F"
+      ? setCurrentTemperatureUnit("C")
+      : setCurrentTemperatureUnit("F");
   };
 
   /* Tried to replace below with hook and couldn't get it to work. Not sure what was wrong. */
@@ -75,6 +79,7 @@ function App() {
     getWeather(coordinates, APIkey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
+        console.log(filteredData);
         setWeatherData(filteredData);
       })
       .catch(console.error);
@@ -116,37 +121,41 @@ function App() {
   }, [activeModal]);
 
   return (
-    <div className="app">
-      <div className="app__content">
-        <Header
-          handleAddClick={handleAddClick}
-          handleHamburgerClick={handleHamburgerClick}
-          handleToggleSwitch={handleToggleSwitch}
-          handleMenuClose={handleMenuClose}
-          isMobileMenuOpen={isMobileMenuOpen}
-          weatherData={weatherData}
-        />
-        <Main
-          weatherData={weatherData}
-          handleItemCardClick={handleItemCardClick}
+    <CurrentTemperatureUnitContext.Provider
+      value={{ currentTemperatureUnit, handleToggleSwitch }}
+    >
+      <div className="app">
+        <div className="app__content">
+          <Header
+            handleAddClick={handleAddClick}
+            handleHamburgerClick={handleHamburgerClick}
+            handleToggleSwitch={handleToggleSwitch}
+            handleMenuClose={handleMenuClose}
+            isMobileMenuOpen={isMobileMenuOpen}
+            weatherData={weatherData}
+          />
+          <Main
+            weatherData={weatherData}
+            handleItemCardClick={handleItemCardClick}
+          />
+        </div>
+        <Footer />
+        <ModalWithForm
+          title="New garment"
+          buttonText="Add garment"
+          name="garment"
+          handleModalClose={handleModalClose}
+          isOpen={activeModal === "add-garment"}
+        >
+          <NewGarmentForm />
+        </ModalWithForm>
+        <ItemModal
+          activeModal={activeModal}
+          itemForModal={itemForModal}
+          handleModalClose={handleModalClose}
         />
       </div>
-      <Footer />
-      <ModalWithForm
-        title="New garment"
-        buttonText="Add garment"
-        name="garment"
-        handleModalClose={handleModalClose}
-        isOpen={activeModal === "add-garment"}
-      >
-        <NewGarmentForm />
-      </ModalWithForm>
-      <ItemModal
-        activeModal={activeModal}
-        itemForModal={itemForModal}
-        handleModalClose={handleModalClose}
-      />
-    </div>
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 
