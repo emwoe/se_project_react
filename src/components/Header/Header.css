@@ -23,10 +23,18 @@
   display: none;
 }
 
+.header__link {
+  display: flex;
+  flex-direction: row;
+  margin: auto 0;
+  padding: 0;
+  height: fit-content;
+}
+
 .header__logo {
   width: 89px;
   height: 32px;
-  margin: auto 24px 20px 0;
+  margin: auto 24px auto 0;
 }
 
 .header__hamburger-menu {

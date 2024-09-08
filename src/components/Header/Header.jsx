@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import headerLogo from "../../assets/wtwr.png";
 import avatar from "../../assets/avatar.png";
 import closebtn from "../../assets/closebtn.png";
@@ -21,7 +22,9 @@ function Header({
   return (
     <header className="header">
       <div className="header__left">
-        <img src={headerLogo} className="header__logo"></img>
+        <Link className="header__link" to="/se_project_react/">
+          <img src={headerLogo} className="header__logo"></img>
+        </Link>
         <p className="header__date-place">
           {currentDate}, {weatherData.city}
         </p>
@@ -52,8 +55,10 @@ function Header({
             alt="exit button"
           ></img>
         </button>
-        <p className="header__name">Terrence Tegegne</p>
-        <img alt="avatar" className="header__avatar" src={avatar}></img>
+        <Link className="header__link" to="/se_project_react/profile">
+          <p className="header__name">Terrence Tegegne</p>
+          <img alt="avatar" className="header__avatar" src={avatar}></img>
+        </Link>
       </div>
       <img
         src={hamburger}

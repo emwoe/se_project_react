@@ -146,10 +146,14 @@ function App() {
                 />
               }
             />
-            <Route path="se_project_react/profile" element={<Profile />} />
+            <Route
+              path="se_project_react/profile"
+              element={<Profile handleItemCardClick={handleItemCardClick} />}
+            />
           </Routes>
+
+          <Footer />
         </div>
-        <Footer />
         <ModalWithForm
           title="New garment"
           buttonText="Add garment"
