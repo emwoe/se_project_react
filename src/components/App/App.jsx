@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import React from "react";
 
 import "./App.css";
@@ -9,6 +10,7 @@ import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import NewGarmentForm from "../ModalWithForm/NewGarmentForm/NewGarmentForm";
 import ItemModal from "../ItemModal/ItemModal";
+import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
 import FormValidator from "../../utils/FormValidator";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -134,10 +136,18 @@ function App() {
             isMobileMenuOpen={isMobileMenuOpen}
             weatherData={weatherData}
           />
-          <Main
-            weatherData={weatherData}
-            handleItemCardClick={handleItemCardClick}
-          />
+          <Routes>
+            <Route
+              path="/se_project_react"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleItemCardClick={handleItemCardClick}
+                />
+              }
+            />
+            <Route path="se_project_react/profile" element={<Profile />} />
+          </Routes>
         </div>
         <Footer />
         <ModalWithForm
