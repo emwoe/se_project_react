@@ -15,9 +15,12 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
+import { getItems, postItem, deleteItem } from "../../utils/api.js";
 import FormValidator from "../../utils/FormValidator";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+/*
 import { defaultClothingItems } from "../../utils/constants";
+*/
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -32,7 +35,7 @@ function App() {
   const [itemForModal, setItemForModal] = useState({});
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -68,8 +71,9 @@ function App() {
     newItem._id = clothingItems[clothingItems.length - 1]._id + 1;
     newItem.name = name;
     newItem.weather = weatherType;
-    newItem.link = imageUrl;
+    newItem.imageUrl = imageUrl;
     console.log(newItem);
+    postItem(newItem);
     setClothingItems([newItem, ...clothingItems]);
     handleModalClose();
   };
@@ -91,7 +95,7 @@ function App() {
 
   React.useEffect(() => {
     enableValidation(validationConfig);
-  }, []);
+  });
 
   React.useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -100,6 +104,12 @@ function App() {
         console.log(filteredData);
         setWeatherData(filteredData);
       })
+      .catch(console.error);
+  }, []);
+
+  React.useEffect(() => {
+    getItems()
+      .then((data) => setClothingItems(data))
       .catch(console.error);
   }, []);
 
