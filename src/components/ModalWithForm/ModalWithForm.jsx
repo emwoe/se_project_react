@@ -8,6 +8,7 @@ function ModalWithForm({
   handleModalClose,
   children,
   isOpen,
+  onSubmit,
 }) {
   return (
     <div
@@ -16,7 +17,7 @@ function ModalWithForm({
       }`}
     >
       <div className="modal__overlay">
-        <form className="modal__form">
+        <form className="modal__form" onSubmit={onSubmit}>
           <button
             type="button"
             className="modal__close-btn"

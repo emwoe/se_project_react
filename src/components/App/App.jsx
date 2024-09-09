@@ -7,13 +7,17 @@ import { coordinates, APIkey, validationConfig } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
+/*
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import NewGarmentForm from "../ModalWithForm/NewGarmentForm/NewGarmentForm";
+*/
+import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
 import FormValidator from "../../utils/FormValidator";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -28,6 +32,7 @@ function App() {
   const [itemForModal, setItemForModal] = useState({});
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -56,6 +61,17 @@ function App() {
     currentTemperatureUnit === "F"
       ? setCurrentTemperatureUnit("C")
       : setCurrentTemperatureUnit("F");
+  };
+
+  const onAddItem = ({ name, imageUrl, weatherType }) => {
+    const newItem = {};
+    newItem._id = 7;
+    newItem.name = name;
+    newItem.weather = weatherType;
+    newItem.link = imageUrl;
+    console.log(newItem);
+    setClothingItems([newItem, ...clothingItems]);
+    handleModalClose();
   };
 
   /* Tried to replace below with hook and couldn't get it to work. Not sure what was wrong. */
@@ -143,6 +159,7 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleItemCardClick={handleItemCardClick}
+                  clothingItems={clothingItems}
                 />
               }
             />
@@ -154,15 +171,12 @@ function App() {
 
           <Footer />
         </div>
-        <ModalWithForm
-          title="New garment"
-          buttonText="Add garment"
-          name="garment"
+        <AddItemModal
+          activeModal={activeModal}
           handleModalClose={handleModalClose}
           isOpen={activeModal === "add-garment"}
-        >
-          <NewGarmentForm />
-        </ModalWithForm>
+          onAddItem={onAddItem}
+        />
         <ItemModal
           activeModal={activeModal}
           itemForModal={itemForModal}
