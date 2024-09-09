@@ -65,7 +65,7 @@ function App() {
 
   const onAddItem = ({ name, imageUrl, weatherType }) => {
     const newItem = {};
-    newItem._id = 7;
+    newItem._id = clothingItems[clothingItems.length - 1]._id + 1;
     newItem.name = name;
     newItem.weather = weatherType;
     newItem.link = imageUrl;
