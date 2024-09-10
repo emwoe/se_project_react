@@ -14,6 +14,7 @@ import NewGarmentForm from "../ModalWithForm/NewGarmentForm/NewGarmentForm";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
+import DeleteItemCheckModal from "../DeleteItemCheckModal/DeleteItemCheckModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
 import { getItems, postItem, deleteItem } from "../../utils/api.js";
 import FormValidator from "../../utils/FormValidator";
@@ -36,10 +37,15 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [itemForDeleteID, setItemforDeleteID] = useState();
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
     setIsMobileMenuOpen(false);
+  };
+
+  const handleDeleteClick = () => {
+    setActiveModal("delete-check");
   };
 
   const handleModalClose = () => {
@@ -49,7 +55,7 @@ function App() {
   const handleItemCardClick = (card) => {
     setActiveModal("item-card");
     setItemForModal(card);
-    console.log(card);
+    setItemforDeleteID(card._id);
   };
 
   const handleHamburgerClick = () => {
@@ -72,10 +78,15 @@ function App() {
     newItem.name = name;
     newItem.weather = weatherType;
     newItem.imageUrl = imageUrl;
-    console.log(newItem);
     postItem(newItem);
     setClothingItems([newItem, ...clothingItems]);
     handleModalClose();
+  };
+
+  const deleteItemNow = () => {
+    deleteItem(itemForDeleteID);
+    handleModalClose();
+    setItemforDeleteID(null);
   };
 
   /* Tried to replace below with hook and couldn't get it to work. Not sure what was wrong. */
@@ -101,7 +112,6 @@ function App() {
     getWeather(coordinates, APIkey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
-        console.log(filteredData);
         setWeatherData(filteredData);
       })
       .catch(console.error);
@@ -111,7 +121,7 @@ function App() {
     getItems()
       .then((data) => setClothingItems(data))
       .catch(console.error);
-  }, []);
+  }, [itemForDeleteID]);
 
   React.useEffect(() => {
     function handleEscClose(evt) {
@@ -144,7 +154,6 @@ function App() {
     return () => {
       document.removeEventListener("keydown", handleEscClose);
       document.removeEventListener("click", handleRemoteClick);
-      console.log(activeModal);
     };
   }, [activeModal]);
 
@@ -175,7 +184,12 @@ function App() {
             />
             <Route
               path="se_project_react/profile"
-              element={<Profile handleItemCardClick={handleItemCardClick} />}
+              element={
+                <Profile
+                  handleItemCardClick={handleItemCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
             />
           </Routes>
 
@@ -191,6 +205,13 @@ function App() {
           activeModal={activeModal}
           itemForModal={itemForModal}
           handleModalClose={handleModalClose}
+          handleDeleteClick={handleDeleteClick}
+        />
+
+        <DeleteItemCheckModal
+          activeModal={activeModal}
+          handleModalClose={handleModalClose}
+          deleteItemNow={deleteItemNow}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>

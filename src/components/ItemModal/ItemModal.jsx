@@ -1,7 +1,12 @@
 import "./ItemModal.css";
 import closeBtnWhite from "../../assets/closebtnwhite.png";
 
-function ItemModal({ activeModal, itemForModal, handleModalClose }) {
+function ItemModal({
+  activeModal,
+  itemForModal,
+  handleModalClose,
+  handleDeleteClick,
+}) {
   return (
     <div
       className={`modal modal_type_item ${
@@ -23,14 +28,25 @@ function ItemModal({ activeModal, itemForModal, handleModalClose }) {
           </button>
           <img
             className="modal__item-image"
-            src={itemForModal.link}
+            src={itemForModal.imageUrl}
             alt={itemForModal.name}
           ></img>
           <div className="modal__footer">
-            <h3 className="modal__item-name">{itemForModal.name}</h3>
-            <p className="modal__item-weather">
-              Weather: {itemForModal.weather}
-            </p>
+            <div className="modal__footer-left">
+              <h3 className="modal__item-name">{itemForModal.name}</h3>
+              <p className="modal__item-weather">
+                Weather: {itemForModal.weather}
+              </p>
+            </div>
+            <div className="modal__footer-right">
+              <button
+                type="button"
+                className="modal__delete-btn"
+                onClick={handleDeleteClick}
+              >
+                Delete item
+              </button>
+            </div>
           </div>
         </div>
       </div>

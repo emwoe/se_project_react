@@ -9,7 +9,8 @@
 .app__content {
   max-width: 1360px;
   width: 100vw;
-  height: fit-content;
+  min-height: 100vh;
+  max-height: fit-content;
   margin: 0 auto;
   position: relative;
 }

@@ -1,0 +1,71 @@
+.modal {
+  opacity: 0;
+  visibility: hidden;
+
+  pointer-events: none;
+  transition: opacity;
+}
+
+.modal_opened {
+  opacity: 1;
+  visibility: visible;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+  pointer-events: all;
+}
+
+.modal__overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.modal__card {
+  background-color: white;
+  z-index: 10;
+  font-size: 20px;
+  line-height: 24px;
+  max-width: 670px;
+  min-width: 400px;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.modal__questions {
+  width: fit-content;
+  margin: 60px auto 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__questions-text {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.modal__questions-confirm {
+  border: none;
+  width: fit-content;
+  margin: 40px auto 0;
+  display: block;
+  background-color: white;
+  font-weight: 700;
+  color: red;
+  cursor: pointer;
+}
+
+.modal__questions-cancel {
+  border: none;
+  margin: 24px auto 0;
+  font-weight: 700;
+  width: fit-content;
+  background-color: white;
+  cursor: pointer;
+}

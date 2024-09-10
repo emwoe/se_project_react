@@ -16,6 +16,23 @@
   background-color: white;
   padding-top: 20px;
   padding-bottom: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.modal__footer-right {
+  margin-right: 32px;
+}
+
+.modal__delete-btn {
+  border: none;
+  background-color: white;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  color: red;
+  cursor: pointer;
 }
 
 .modal__item-name,

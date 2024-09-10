@@ -29,8 +29,8 @@ export const postItem = (data) => {
   });
 };
 
-export const deleteItem = (data) => {
-  return fetch(`http://localhost:3001/items/${data._id}`, {
+export const deleteItem = (dataID) => {
+  return fetch(`http://localhost:3001/items/${dataID}`, {
     method: "DELETE",
   }).then((res) => {
     if (res.ok) {
