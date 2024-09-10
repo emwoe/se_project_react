@@ -59,7 +59,7 @@ function Header({
           className={`header__link ${
             isMobileMenuOpen === true && "header__link_mobile"
           }`}
-          to="/"
+          to="/profile"
         >
           <p className="header__name">Terrence Tegegne</p>
           <img alt="avatar" className="header__avatar" src={avatar}></img>
