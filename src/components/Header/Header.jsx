@@ -22,7 +22,7 @@ function Header({
   return (
     <header className="header">
       <div className="header__left">
-        <Link className="header__link" to="/se_project_react/">
+        <Link className="header__link" to="/">
           <img src={headerLogo} className="header__logo"></img>
         </Link>
         <p className="header__date-place">
@@ -59,7 +59,7 @@ function Header({
           className={`header__link ${
             isMobileMenuOpen === true && "header__link_mobile"
           }`}
-          to="/se_project_react/profile"
+          to="/"
         >
           <p className="header__name">Terrence Tegegne</p>
           <img alt="avatar" className="header__avatar" src={avatar}></img>
