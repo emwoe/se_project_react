@@ -94,6 +94,10 @@
     top: 20px;
   }
 
+  .header__link_mobile {
+    position: absolute;
+  }
+
   .header__mobile-close-btn_visible {
     display: inline;
     width: 15px;
