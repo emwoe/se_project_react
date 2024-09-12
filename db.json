@@ -7,40 +7,10 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2"
     },
     {
-      "_id": 1,
-      "name": "Boot",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Boot.png?etag=0953a2ea59f1c6ebc832fabacdc9c70e"
-    },
-    {
-      "_id": 2,
-      "name": "Cap",
-      "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591"
-    },
-    {
-      "_id": 3,
-      "name": "Coat",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4"
-    },
-    {
       "_id": 5,
       "name": "Hoodie",
       "weather": "cold",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8"
-    },
-    {
-      "_id": 6,
-      "name": "Jacket",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad"
-    },
-    {
-      "_id": 10,
-      "name": "Scarf",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Scarf.png?etag=74efbee93810c926b5507e862c6cb76c"
     },
     {
       "_id": 11,
@@ -62,15 +32,33 @@
     },
     {
       "_id": 15,
-      "name": "Sweatshirt",
+      "name": "sweatpants",
       "weather": "warm",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sweatshirt.png?etag=008a9674757bea2e0bdb31242e364be0"
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTZGBu4PEKVdubusBfbi4lB6Pk3EYnNDBtLVLM7RwgYcbkfSzQI9dvbVATKcE3bqTvq6qdNpFpHEb-ylWEWiPb2_y266MxB3PW5KGPgFfsOQv70bYcV8pokz1-i7hm9no2SXpmgRz0&usqp=CAc"
     },
     {
       "_id": 16,
-      "name": "T-Shirt",
+      "name": "swimsuit",
       "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+      "imageUrl": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcShttOLw1N2yiuM8xSrV3k93oSYCaf9hTNlxo0CvZx1WWfz2uW9BTwZbRPvSuOldwVaIyMwVEr26ASO_1spFi5qjRc9afSn4_pdUXJaZKcYqc9BOjx9_WjmyIEOhClJd8x9jTzrWQ&usqp=CAc"
+    },
+    {
+      "_id": 17,
+      "name": "sweatpants",
+      "weather": "cold",
+      "imageUrl": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcShttOLw1N2yiuM8xSrV3k93oSYCaf9hTNlxo0CvZx1WWfz2uW9BTwZbRPvSuOldwVaIyMwVEr26ASO_1spFi5qjRc9afSn4_pdUXJaZKcYqc9BOjx9_WjmyIEOhClJd8x9jTzrWQ&usqp=CAc"
+    },
+    {
+      "_id": 18,
+      "name": "Austin",
+      "weather": "hot",
+      "imageUrl": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcShttOLw1N2yiuM8xSrV3k93oSYCaf9hTNlxo0CvZx1WWfz2uW9BTwZbRPvSuOldwVaIyMwVEr26ASO_1spFi5qjRc9afSn4_pdUXJaZKcYqc9BOjx9_WjmyIEOhClJd8x9jTzrWQ&usqp=CAc"
+    },
+    {
+      "_id": 19
+    },
+    {
+      "_id": 20
     }
   ]
 }

@@ -1,17 +1,31 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
-  const { values, handleChange, errors, isValid, resetForm } =
+  const { values, errors, isValid, resetForm, handleChange } =
     useFormAndValidation();
+
+  /*
+  const handleNameChange = (evt) => {
+    values.name = evt.target.value;
+  };
+
+  const handleNewImageUrl = (evt) => {
+    values.url = evt.target.value;
+  };
+
+  */
+
+  const handleRadioInput = (evt) => {
+    values.weather = evt.target.value;
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (!isValid) {
       return;
     }
-    onAddItem(values, resetForm);
+    onAddItem({ values }, resetForm);
   };
 
   return (
@@ -33,8 +47,8 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
         className="modal__input"
         id="name"
         placeholder="Name"
-        value={values.name || ""}
         onChange={handleChange}
+        value={values.name || ""}
         required
         minLength="2"
         maxLength="40"
@@ -54,8 +68,8 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
         placeholder="Image URL"
         name="url"
         pattern="https?://.+"
-        value={values.url || ""}
         onChange={handleChange}
+        value={values.url || ""}
         required
       ></input>
       {errors.url && (
@@ -73,7 +87,7 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
             name="weather-type"
             id="hot"
             value="hot"
-            onChange={handleChange}
+            onChange={handleRadioInput}
           ></input>
           <label className="modal__radio-label" htmlFor="hot">
             Hot
@@ -86,7 +100,7 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
             name="weather-type"
             id="warm"
             value="warm"
-            onChange={handleChange}
+            onChange={handleRadioInput}
           ></input>
           <label htmlFor="warm" className="modal__radio-label">
             Warm
@@ -98,7 +112,7 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
             type="radio"
             name="weather-type"
             value="cold"
-            onChange={handleChange}
+            onChange={handleRadioInput}
             id="cold"
           ></input>
           <label htmlFor="cold" className="modal__radio-label">

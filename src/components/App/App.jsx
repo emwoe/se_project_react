@@ -38,7 +38,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [itemForDeleteID, setItemforDeleteID] = useState();
-  const [itemDidDelete, setItemDidDelete] = useState(false);
+  const [itemToAdd, setItemToAdd] = useState({});
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -73,24 +73,25 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  const onAddItem = ({ name, imageUrl, weatherType }) => {
+  const onAddItem = ({ values }) => {
     const newItem = {};
     newItem._id = clothingItems[clothingItems.length - 1]._id + 1;
-    newItem.name = name;
-    newItem.weather = weatherType;
-    newItem.imageUrl = imageUrl;
-    postItem(newItem)
-      .catch(console.error)
-      .then(setClothingItems([newItem, ...clothingItems]))
-      .then(handleModalClose());
+    newItem.name = values.name;
+    newItem.weather = values.weather;
+    newItem.imageUrl = values.url;
+    setItemToAdd(newItem);
+    postItem(itemToAdd).catch(console.error);
+    setClothingItems([newItem, ...clothingItems]);
+    handleModalClose();
+    setItemToAdd({});
   };
 
   const deleteItemNow = () => {
     deleteItem(itemForDeleteID).catch(console.error);
-    handleModalClose();
     getItems()
       .catch(console.error)
       .then((data) => setClothingItems(data));
+    handleModalClose();
   };
 
   React.useEffect(() => {
@@ -106,7 +107,7 @@ function App() {
     getItems()
       .catch(console.error)
       .then((data) => setClothingItems(data));
-  }, []);
+  }, [setItemToAdd]);
 
   React.useEffect(() => {
     function handleEscClose(evt) {
