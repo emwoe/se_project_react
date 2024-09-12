@@ -5,11 +5,12 @@ import "./Profile.css";
 import Sidebar from "../Sidebar/sidebar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
-function Profile({ handleItemCardClick, clothingItems }) {
+function Profile({ handleItemCardClick, clothingItems, handleAddClick }) {
   return (
     <main className="profile">
       <Sidebar />
       <ClothesSection
+        handleAddClick={handleAddClick}
         handleItemCardClick={handleItemCardClick}
         clothingItems={clothingItems}
       />

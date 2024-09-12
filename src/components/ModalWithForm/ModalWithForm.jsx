@@ -3,7 +3,6 @@ import closeBtn from "../../assets/closebtn.png";
 
 function ModalWithForm({
   title,
-  buttonText,
   name,
   handleModalClose,
   children,
@@ -31,9 +30,6 @@ function ModalWithForm({
           </button>
           <h3 className="modal__title">{title}</h3>
           {children}
-          <button type="submit" className="modal__submit-btn">
-            {buttonText}
-          </button>
         </form>
       </div>
     </div>

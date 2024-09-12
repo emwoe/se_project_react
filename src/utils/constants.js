@@ -102,3 +102,5 @@ export const validationConfig = {
   errorClass: "modal__input-error_active",
   errorMessageSelectorSuffix: "-input-error",
 };
+
+export const baseUrl = "http://localhost:3001/items";

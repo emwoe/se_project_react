@@ -38,6 +38,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [itemForDeleteID, setItemforDeleteID] = useState();
+  const [itemDidDelete, setItemDidDelete] = useState(false);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -78,35 +79,19 @@ function App() {
     newItem.name = name;
     newItem.weather = weatherType;
     newItem.imageUrl = imageUrl;
-    postItem(newItem);
-    setClothingItems([newItem, ...clothingItems]);
-    handleModalClose();
+    postItem(newItem)
+      .catch(console.error)
+      .then(setClothingItems([newItem, ...clothingItems]))
+      .then(handleModalClose());
   };
 
   const deleteItemNow = () => {
-    deleteItem(itemForDeleteID);
+    deleteItem(itemForDeleteID).catch(console.error);
     handleModalClose();
-    setItemforDeleteID(null);
+    getItems()
+      .catch(console.error)
+      .then((data) => setClothingItems(data));
   };
-
-  /* Tried to replace below with hook and couldn't get it to work. Not sure what was wrong. */
-  const formValidators = {};
-
-  const enableValidation = (validationConfig) => {
-    const formList = Array.from(
-      document.querySelectorAll(validationConfig.formSelector)
-    );
-    formList.forEach((formElement) => {
-      const validator = new FormValidator(validationConfig, formElement);
-      const formName = formElement.getAttribute("name");
-      formValidators[formName] = validator;
-      validator.enableValidation();
-    });
-  };
-
-  React.useEffect(() => {
-    enableValidation(validationConfig);
-  });
 
   React.useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -119,9 +104,9 @@ function App() {
 
   React.useEffect(() => {
     getItems()
-      .then((data) => setClothingItems(data))
-      .catch(console.error);
-  }, [itemForDeleteID]);
+      .catch(console.error)
+      .then((data) => setClothingItems(data));
+  }, []);
 
   React.useEffect(() => {
     function handleEscClose(evt) {
@@ -188,6 +173,7 @@ function App() {
                 <Profile
                   handleItemCardClick={handleItemCardClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             />

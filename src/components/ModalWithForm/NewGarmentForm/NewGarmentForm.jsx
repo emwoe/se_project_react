@@ -1,45 +1,50 @@
-import { useFormAndValidation } from "../../../hooks/useFormAndValidation";
 function NewGarmentForm({
+  /*
   name,
   handleNameChange,
   imageUrl,
   handleNewImageUrl,
   handleRadioInput,
+  */
+  values,
+  handleChange,
+  errors,
 }) {
-  /* Tried using the hook for validation, but couldn't get it to work
-  const { values, handleChange, errors, isValid, setValues, resetForm } =
-    useFormAndValidation();
-    */
-
   return (
     <>
       <label className="modal__label" htmlFor="name">
         Name
-        <span className="modal__input-error name-input-error"></span>
+        {errors.url && <span className="modal__error">{errors.url}</span>}
       </label>
       <input
         type="text"
+        name="name"
         className="modal__input"
         id="name"
         placeholder="Name"
+        value={values.name || ""}
+        onChange={handleChange}
         required
         minLength="2"
         maxLength="40"
+        /*
         value={name}
         onChange={handleNameChange}
+        */
       ></input>
       <label className="modal__label" htmlFor="imageUrl">
         Image
-        <span className="modal__input-error imageUrl-input-error"></span>
+        {errors.url && <span className="modal__error">{errors.url}</span>}
       </label>
       <input
         type="url"
+        name="imageUrl"
         required
         className="modal__input"
         id="imageUrl"
         placeholder="Image URL"
-        value={imageUrl}
-        onChange={handleNewImageUrl}
+        value={values.imageUrl || ""}
+        onChange={handleChange}
       ></input>
       <fieldset className="modal__radio-buttons" id="fieldset">
         <legend className="modal__legend">
@@ -53,7 +58,7 @@ function NewGarmentForm({
             name="weather-type"
             id="hot"
             value="hot"
-            onChange={handleRadioInput}
+            onChange={handleChange}
           ></input>
           <label className="modal__radio-label" htmlFor="hot">
             Hot
@@ -66,7 +71,7 @@ function NewGarmentForm({
             name="weather-type"
             id="warm"
             value="warm"
-            onChange={handleRadioInput}
+            onChange={handleChange}
           ></input>
           <label htmlFor="warm" className="modal__radio-label">
             Warm
@@ -78,7 +83,7 @@ function NewGarmentForm({
             type="radio"
             name="weather-type"
             value="cold"
-            onChange={handleRadioInput}
+            onChange={handleChange}
             id="cold"
           ></input>
           <label htmlFor="cold" className="modal__radio-label">

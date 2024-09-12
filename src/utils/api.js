@@ -1,15 +1,19 @@
+import { baseUrl } from "./constants";
+
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    return Promise.reject(`Error: ${res.status}`);
+  }
+}
+
 export const getItems = () => {
-  return fetch("http://localhost:3001/items").then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
+  return fetch(baseUrl).then(checkResponse);
 };
 
 export const postItem = (data) => {
-  return fetch("http://localhost:3001/items", {
+  return fetch(baseUrl, {
     method: "POST",
     body: JSON.stringify({
       _id: data._id,
@@ -20,23 +24,11 @@ export const postItem = (data) => {
     headers: {
       "Content-type": "application/json",
     },
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
+  }).then(checkResponse);
 };
 
 export const deleteItem = (dataID) => {
-  return fetch(`http://localhost:3001/items/${dataID}`, {
+  return fetch(`${baseUrl}/${dataID}`, {
     method: "DELETE",
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
+  }).then(checkResponse);
 };

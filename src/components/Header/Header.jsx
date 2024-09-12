@@ -23,7 +23,7 @@ function Header({
     <header className="header">
       <div className="header__left">
         <Link className="header__link" to="/">
-          <img src={headerLogo} className="header__logo"></img>
+          <img src={headerLogo} alt="logo" className="header__logo"></img>
         </Link>
         <p className="header__date-place">
           {currentDate}, {weatherData.city}
