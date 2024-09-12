@@ -43,22 +43,28 @@
       "imageUrl": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcShttOLw1N2yiuM8xSrV3k93oSYCaf9hTNlxo0CvZx1WWfz2uW9BTwZbRPvSuOldwVaIyMwVEr26ASO_1spFi5qjRc9afSn4_pdUXJaZKcYqc9BOjx9_WjmyIEOhClJd8x9jTzrWQ&usqp=CAc"
     },
     {
-      "_id": 17,
-      "name": "sweatpants",
+      "_id": 23,
+      "name": "Mittens",
       "weather": "cold",
-      "imageUrl": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcShttOLw1N2yiuM8xSrV3k93oSYCaf9hTNlxo0CvZx1WWfz2uW9BTwZbRPvSuOldwVaIyMwVEr26ASO_1spFi5qjRc9afSn4_pdUXJaZKcYqc9BOjx9_WjmyIEOhClJd8x9jTzrWQ&usqp=CAc"
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR_xKf1UyC0cV6BL8-FVYf3ga8en66jVXwHXYVCKic7F1hN1RwO35OmvQXIM_iKKJ_gqoAQAldHKhqoeSnkuIIC6Q3y-xwHAwBZtwFTyMiQpY0FPafrS_Vb3EYahd4Yl7TWuWRTYAA&usqp=CAc"
     },
     {
-      "_id": 18,
-      "name": "Austin",
-      "weather": "hot",
-      "imageUrl": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcShttOLw1N2yiuM8xSrV3k93oSYCaf9hTNlxo0CvZx1WWfz2uW9BTwZbRPvSuOldwVaIyMwVEr26ASO_1spFi5qjRc9afSn4_pdUXJaZKcYqc9BOjx9_WjmyIEOhClJd8x9jTzrWQ&usqp=CAc"
+      "_id": 24,
+      "name": "Mittens",
+      "weather": "cold",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR_xKf1UyC0cV6BL8-FVYf3ga8en66jVXwHXYVCKic7F1hN1RwO35OmvQXIM_iKKJ_gqoAQAldHKhqoeSnkuIIC6Q3y-xwHAwBZtwFTyMiQpY0FPafrS_Vb3EYahd4Yl7TWuWRTYAA&usqp=CAc"
     },
     {
-      "_id": 19
+      "_id": 25,
+      "name": "Jacket",
+      "weather": "cold",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSD3y_xfp9VufBm7ELrnVsPPCxY9TGthKuQGSEJBMMcjQrpbk0ApJ6l_4iy208xqATGKtzgDc7mthleAvtVBoOqelVaV5C8L3FOkwzjBc_x6ajwKjHQlkPK-u15DyHSHMLaQJkLBQ&usqp=CAc"
     },
     {
-      "_id": 20
+      "_id": 26,
+      "name": "Jacket",
+      "weather": "cold",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSD3y_xfp9VufBm7ELrnVsPPCxY9TGthKuQGSEJBMMcjQrpbk0ApJ6l_4iy208xqATGKtzgDc7mthleAvtVBoOqelVaV5C8L3FOkwzjBc_x6ajwKjHQlkPK-u15DyHSHMLaQJkLBQ&usqp=CAc"
     }
   ]
 }

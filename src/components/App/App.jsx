@@ -79,11 +79,9 @@ function App() {
     newItem.name = values.name;
     newItem.weather = values.weather;
     newItem.imageUrl = values.url;
-    setItemToAdd(newItem);
-    postItem(itemToAdd).catch(console.error);
+    postItem(newItem).catch(console.error);
     setClothingItems([newItem, ...clothingItems]);
     handleModalClose();
-    setItemToAdd({});
   };
 
   const deleteItemNow = () => {
@@ -107,7 +105,7 @@ function App() {
     getItems()
       .catch(console.error)
       .then((data) => setClothingItems(data));
-  }, [setItemToAdd]);
+  }, []);
 
   React.useEffect(() => {
     function handleEscClose(evt) {
