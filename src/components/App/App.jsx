@@ -73,7 +73,7 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  const onAddItem = ({ values }) => {
+  const onAddItem = ({ values }, resetForm) => {
     const newItem = {};
     newItem._id = clothingItems[clothingItems.length - 1]._id + 1;
     newItem.name = values.name;
@@ -81,6 +81,7 @@ function App() {
     newItem.imageUrl = values.url;
     postItem(newItem).catch(console.error);
     setClothingItems([newItem, ...clothingItems]);
+    resetForm();
     handleModalClose();
   };
 

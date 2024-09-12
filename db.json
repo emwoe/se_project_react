@@ -65,6 +65,12 @@
       "name": "Jacket",
       "weather": "cold",
       "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSD3y_xfp9VufBm7ELrnVsPPCxY9TGthKuQGSEJBMMcjQrpbk0ApJ6l_4iy208xqATGKtzgDc7mthleAvtVBoOqelVaV5C8L3FOkwzjBc_x6ajwKjHQlkPK-u15DyHSHMLaQJkLBQ&usqp=CAc"
+    },
+    {
+      "_id": 27,
+      "name": "Flannel Shirt",
+      "weather": "warm",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRqtZoB29vlw7sIpxPUOwjzMUa-NaaxNKgG55-HMIKm5uv0yLd3rIukMUCdWKj-EJ-Iq3dnB2_y2VzM4dh-nDKEv_dep9qsdG4IQcXmQOajjAe1lkgK13GUjr5d7njGIh2xvzhF2Bjy3Q&usqp=CAc"
     }
   ]
 }
