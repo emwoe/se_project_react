@@ -5,21 +5,6 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
   const { values, errors, isValid, resetForm, handleChange } =
     useFormAndValidation();
 
-  /*
-  const handleNameChange = (evt) => {
-    values.name = evt.target.value;
-  };
-
-  const handleNewImageUrl = (evt) => {
-    values.url = evt.target.value;
-  };
-
-  */
-
-  const handleRadioInput = (evt) => {
-    values.weather = evt.target.value;
-  };
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (!isValid) {
@@ -84,10 +69,10 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
           <input
             className="modal__radio-input"
             type="radio"
-            name="weather-type"
+            name="weather"
             id="hot"
             value="hot"
-            onChange={handleRadioInput}
+            onChange={handleChange}
           ></input>
           <label className="modal__radio-label" htmlFor="hot">
             Hot
@@ -97,10 +82,10 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
           <input
             className="modal__radio-input"
             type="radio"
-            name="weather-type"
+            name="weather"
             id="warm"
             value="warm"
-            onChange={handleRadioInput}
+            onChange={handleChange}
           ></input>
           <label htmlFor="warm" className="modal__radio-label">
             Warm
@@ -110,9 +95,9 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
           <input
             className="modal__radio-input"
             type="radio"
-            name="weather-type"
+            name="weather"
             value="cold"
-            onChange={handleRadioInput}
+            onChange={handleChange}
             id="cold"
           ></input>
           <label htmlFor="cold" className="modal__radio-label">
@@ -120,9 +105,6 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
           </label>
         </div>
       </fieldset>
-      <button type="submit" className="modal__submit-btn" disabled={!isValid}>
-        Add garment
-      </button>
     </ModalWithForm>
   );
 }

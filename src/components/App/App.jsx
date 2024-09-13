@@ -79,14 +79,22 @@ function App() {
     newItem.name = values.name;
     newItem.weather = values.weather;
     newItem.imageUrl = values.url;
-    postItem(newItem).catch(console.error);
-    setClothingItems([newItem, ...clothingItems]);
-    resetForm();
-    handleModalClose();
+    postItem(newItem)
+      .catch(console.error)
+      .then(setClothingItems([newItem, ...clothingItems]))
+      .then(resetForm())
+      .finally(handleModalClose());
   };
 
   const deleteItemNow = () => {
-    deleteItem(itemForDeleteID).catch(console.error);
+    deleteItem(itemForDeleteID)
+      .then(() => {
+        setClothingItems((cards) =>
+          cards.filter((card) => card._id != itemForDeleteID)
+        );
+      })
+      .catch(console.error);
+
     getItems()
       .catch(console.error)
       .then((data) => setClothingItems(data));

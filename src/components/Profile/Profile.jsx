@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import "./Profile.css";
 
-import Sidebar from "../Sidebar/sidebar";
+import Sidebar from "../Sidebar/Sidebar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
 function Profile({ handleItemCardClick, clothingItems, handleAddClick }) {

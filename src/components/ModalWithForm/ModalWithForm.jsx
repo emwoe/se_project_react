@@ -8,6 +8,7 @@ function ModalWithForm({
   children,
   isOpen,
   onSubmit,
+  isValid,
 }) {
   return (
     <div
@@ -30,6 +31,13 @@ function ModalWithForm({
           </button>
           <h3 className="modal__title">{title}</h3>
           {children}
+          <button
+            type="submit"
+            className="modal__submit-btn"
+            disabled={!isValid}
+          >
+            Add garment
+          </button>
         </form>
       </div>
     </div>
