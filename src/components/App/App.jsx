@@ -80,10 +80,10 @@ function App() {
     newItem.weather = values.weather;
     newItem.imageUrl = values.url;
     postItem(newItem)
-      .catch(console.error)
+      .then(handleModalClose)
       .then(() => setClothingItems([newItem, ...clothingItems]))
       .then(resetForm)
-      .finally(handleModalClose);
+      .catch(console.error);
   };
 
   const deleteItemNow = () => {
@@ -96,8 +96,8 @@ function App() {
       .catch(console.error);
 
     getItems()
-      .catch(console.error)
       .then((data) => setClothingItems(data))
+      .catch(console.error)
       .finally(handleModalClose);
   };
 
@@ -112,26 +112,14 @@ function App() {
 
   React.useEffect(() => {
     getItems()
-      .catch(console.error)
-      .then((data) => setClothingItems(data));
+      .then((data) => setClothingItems(data))
+      .catch(console.error);
   }, []);
 
   React.useEffect(() => {
     function handleEscClose(evt) {
       evt.key === "Escape" && handleModalClose();
     }
-
-    /*
-    function handleRemoteClick(evt) {
-      const modaloverlay = document.querySelector(".modal__overlay");
-      const itemmodaloverlay = document.querySelector(
-        ".modal__overlay_type_item"
-      );
-      if (evt.target === modaloverlay || evt.target === itemmodaloverlay) {
-        setActiveModal("");
-      }
-    }
-      */
 
     function handleRemoteClick(evt) {
       if (evt.target.classList.contains("modal__overlay")) {
