@@ -9,6 +9,7 @@ function ModalWithForm({
   isOpen,
   onSubmit,
   isValid,
+  buttonText,
 }) {
   return (
     <div
@@ -36,7 +37,7 @@ function ModalWithForm({
             className="modal__submit-btn"
             disabled={!isValid}
           >
-            Add garment
+            {buttonText}
           </button>
         </form>
       </div>

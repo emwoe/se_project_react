@@ -81,9 +81,9 @@ function App() {
     newItem.imageUrl = values.url;
     postItem(newItem)
       .catch(console.error)
-      .then(setClothingItems([newItem, ...clothingItems]))
-      .then(resetForm())
-      .finally(handleModalClose());
+      .then(() => setClothingItems([newItem, ...clothingItems]))
+      .then(resetForm)
+      .finally(handleModalClose);
   };
 
   const deleteItemNow = () => {
@@ -97,8 +97,8 @@ function App() {
 
     getItems()
       .catch(console.error)
-      .then((data) => setClothingItems(data));
-    handleModalClose();
+      .then((data) => setClothingItems(data))
+      .finally(handleModalClose);
   };
 
   React.useEffect(() => {

@@ -71,6 +71,39 @@
       "name": "Flannel Shirt",
       "weather": "warm",
       "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRqtZoB29vlw7sIpxPUOwjzMUa-NaaxNKgG55-HMIKm5uv0yLd3rIukMUCdWKj-EJ-Iq3dnB2_y2VzM4dh-nDKEv_dep9qsdG4IQcXmQOajjAe1lkgK13GUjr5d7njGIh2xvzhF2Bjy3Q&usqp=CAc"
+    },
+    {
+      "_id": 28,
+      "name": "Jumpsuit",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIuSn5RsdPS7HmELHjkYR1fXhHZG1qFeAyMg&s"
+    },
+    {
+      "_id": 29,
+      "name": "Sweater",
+      "weather": "cold",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSV6Kj3jEpE9fzU1oQ1kNuK4pIEkzBOOfBYQlHwjNvDHGqmvsxgvVph5SQgr_Z9lw_WVfcN98vTCM7IqPFNir8NWcRpk0gZCM0QOrdmM0BXjwxQIjF5JsKO8yhsg3vNWYQkRdaSVxs&usqp=CAc"
+    },
+    {
+      "_id": 30,
+      "name": "Tank top",
+      "weather": "hot",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSDensWN-YB0YZNlC4NowM6ElVOob0YClPoqyOvHIPfP6E9pGXcwqRmCO718osRVfr6-bzT-nhf8HqCQ_mgEuzPZ2wWEfHn90kvUI4kGgiJlrOWE2iidAxMKGWe6401g6-wli8t6Os&usqp=CAc"
+    },
+    {
+      "_id": 31,
+      "name": "Tank top",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSDensWN-YB0YZNlC4NowM6ElVOob0YClPoqyOvHIPfP6E9pGXcwqRmCO718osRVfr6-bzT-nhf8HqCQ_mgEuzPZ2wWEfHn90kvUI4kGgiJlrOWE2iidAxMKGWe6401g6-wli8t6Os&usqp=CAc"
+    },
+    {
+      "_id": 32,
+      "name": "Tank top",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSDensWN-YB0YZNlC4NowM6ElVOob0YClPoqyOvHIPfP6E9pGXcwqRmCO718osRVfr6-bzT-nhf8HqCQ_mgEuzPZ2wWEfHn90kvUI4kGgiJlrOWE2iidAxMKGWe6401g6-wli8t6Os&usqp=CAc"
+    },
+    {
+      "_id": 33,
+      "name": "Tank top",
+      "weather": "warm",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSDensWN-YB0YZNlC4NowM6ElVOob0YClPoqyOvHIPfP6E9pGXcwqRmCO718osRVfr6-bzT-nhf8HqCQ_mgEuzPZ2wWEfHn90kvUI4kGgiJlrOWE2iidAxMKGWe6401g6-wli8t6Os&usqp=CAc"
     }
   ]
 }
