@@ -104,6 +104,23 @@
       "name": "Tank top",
       "weather": "warm",
       "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSDensWN-YB0YZNlC4NowM6ElVOob0YClPoqyOvHIPfP6E9pGXcwqRmCO718osRVfr6-bzT-nhf8HqCQ_mgEuzPZ2wWEfHn90kvUI4kGgiJlrOWE2iidAxMKGWe6401g6-wli8t6Os&usqp=CAc"
+    },
+    {
+      "_id": 0.10879633347475437,
+      "name": "Cap",
+      "weather": "hot",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSBFXls-hMt5GxCjWWn6hgPwx3KSIznj0ZRvz4HU8BH_pGIkVwEv4LUtLioiFK_jWuo3epABnLzmApn9Di20rblIgy6Xg2wZw0GZvPydop561gYFm6QMCpUA2wTEN4qkjZl7_qMfw&usqp=CAc"
+    },
+    {
+      "_id": 0.9806433305901558,
+      "name": "Cap",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSBFXls-hMt5GxCjWWn6hgPwx3KSIznj0ZRvz4HU8BH_pGIkVwEv4LUtLioiFK_jWuo3epABnLzmApn9Di20rblIgy6Xg2wZw0GZvPydop561gYFm6QMCpUA2wTEN4qkjZl7_qMfw&usqp=CAc"
+    },
+    {
+      "_id": 0.7176085169049871,
+      "name": "Cap",
+      "weather": "hot",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSBFXls-hMt5GxCjWWn6hgPwx3KSIznj0ZRvz4HU8BH_pGIkVwEv4LUtLioiFK_jWuo3epABnLzmApn9Di20rblIgy6Xg2wZw0GZvPydop561gYFm6QMCpUA2wTEN4qkjZl7_qMfw&usqp=CAc"
     }
   ]
 }

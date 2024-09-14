@@ -75,7 +75,10 @@ function App() {
 
   const onAddItem = ({ values }, resetForm) => {
     const newItem = {};
+    /*
     newItem._id = clothingItems[clothingItems.length - 1]._id + 1;
+    */
+    newItem._id = Math.random();
     newItem.name = values.name;
     newItem.weather = values.weather;
     newItem.imageUrl = values.url;
@@ -92,13 +95,9 @@ function App() {
         setClothingItems((cards) =>
           cards.filter((card) => card._id != itemForDeleteID)
         );
+        handleModalClose();
       })
       .catch(console.error);
-
-    getItems()
-      .then((data) => setClothingItems(data))
-      .catch(console.error)
-      .finally(handleModalClose);
   };
 
   React.useEffect(() => {
