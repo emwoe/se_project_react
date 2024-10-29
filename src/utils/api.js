@@ -9,11 +9,11 @@ function checkResponse(res) {
 }
 
 export const getItems = () => {
-  return fetch(baseUrl).then(checkResponse);
+  return fetch(`${baseUrl}/items`).then(checkResponse);
 };
 
-export const postItem = (data) => {
-  return fetch(baseUrl, {
+export const postItem = (data, token) => {
+  return fetch(`${baseUrl}/users`, {
     method: "POST",
     body: JSON.stringify({
       _id: data._id,
@@ -23,12 +23,16 @@ export const postItem = (data) => {
     }),
     headers: {
       "Content-type": "application/json",
+      authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
 };
 
-export const deleteItem = (dataID) => {
-  return fetch(`${baseUrl}/${dataID}`, {
+export const deleteItem = (dataID, token) => {
+  return fetch(`${baseUrl}/users/${dataID}`, {
     method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   }).then(checkResponse);
 };

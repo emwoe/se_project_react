@@ -13,6 +13,7 @@ function Header({
   handleToggleSwitch,
   isMobileMenuOpen,
   weatherData,
+  userData,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -61,7 +62,7 @@ function Header({
           }`}
           to="/profile"
         >
-          <p className="header__name">Terrence Tegegne</p>
+          <p className="header__name">{userData.name}</p>
           <img alt="avatar" className="header__avatar" src={avatar}></img>
         </Link>
       </div>
