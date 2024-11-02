@@ -10,7 +10,7 @@ function LoginModal({ handleModalClose, activeModal, isOpen, handleLogin }) {
     if (!isValid) {
       return;
     }
-    handleLogin({ values });
+    handleLogin({ email: values.loginemail, password: values.loginpassword });
   };
 
   return (
@@ -28,12 +28,12 @@ function LoginModal({ handleModalClose, activeModal, isOpen, handleLogin }) {
       </label>
       <input
         type="text"
-        name="email"
+        name="loginemail"
         className="modal__input"
         id="loginemail"
         placeholder="Email"
         onChange={handleChange}
-        value={values.name || ""}
+        value={values.loginemail || ""}
         required
       ></input>
       {errors.name && (
@@ -44,12 +44,12 @@ function LoginModal({ handleModalClose, activeModal, isOpen, handleLogin }) {
       </label>
       <input
         type="password"
-        name="password"
+        name="loginpassword"
         className="modal__input"
         id="loginpassword"
         placeholder="Password"
         onChange={handleChange}
-        value={values.name || ""}
+        value={values.loginpassword || ""}
         required
         minLength="8"
         maxLength="40"

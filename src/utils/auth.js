@@ -8,27 +8,22 @@ function checkResponse(res) {
   }
 }
 
-export const register = (data) => {
+export const register = ({ email, password, name, avatar }) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
-    body: JSON.stringify({
-      name: data.newname,
-      avatar: data.avatarUrl,
-      email: data.email,
-      password: data.password,
-    }),
+    body: JSON.stringify({ email, password, name, avatar }),
     headers: {
       "Content-type": "application/json",
     },
   }).then(checkResponse);
 };
 
-export const login = (data) => {
+export const login = ({ email, password }) => {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
     body: JSON.stringify({
-      email: data.email,
-      password: data.password,
+      email,
+      password,
     }),
     headers: {
       "Content-type": "application/json",

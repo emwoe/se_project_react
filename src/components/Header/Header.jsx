@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import headerLogo from "../../assets/wtwr.png";
 import avatar from "../../assets/avatar.png";
@@ -5,20 +6,24 @@ import closebtn from "../../assets/closebtn.png";
 import hamburger from "../../assets/hamburgermenu.png";
 import ToggleSwitch from "./ToggleSwitch/ToggleSwitch";
 import "./Header.css";
+import { CurrentUserContext } from "../../contexts/CurrentUser";
 
 function Header({
   handleAddClick,
+  handleRegClick,
+  handleLoginClick,
   handleHamburgerClick,
   handleMenuClose,
   handleToggleSwitch,
   isMobileMenuOpen,
   weatherData,
-  userData,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <header className="header">
@@ -45,6 +50,20 @@ function Header({
         </button>
         <button
           type="button"
+          onClick={handleRegClick}
+          className="header__reg-btn"
+        >
+          Sign Up
+        </button>
+        <button
+          type="button"
+          onClick={handleLoginClick}
+          className="header__login-btn"
+        >
+          Login
+        </button>
+        <button
+          type="button"
           onClick={handleMenuClose}
           className={`header__mobile-close-btn ${
             isMobileMenuOpen === true && "header__mobile-close-btn_visible"
@@ -62,8 +81,12 @@ function Header({
           }`}
           to="/profile"
         >
-          <p className="header__name">{userData.name}</p>
-          <img alt="avatar" className="header__avatar" src={avatar}></img>
+          <p className="header__name">{currentUser.name}</p>
+          <img
+            alt="avatar"
+            className="header__avatar"
+            src={currentUser.avatar}
+          ></img>
         </Link>
       </div>
       <img

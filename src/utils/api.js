@@ -13,7 +13,7 @@ export const getItems = () => {
 };
 
 export const postItem = (data, token) => {
-  return fetch(`${baseUrl}/users`, {
+  return fetch(`${baseUrl}/items`, {
     method: "POST",
     body: JSON.stringify({
       _id: data._id,
@@ -29,7 +29,7 @@ export const postItem = (data, token) => {
 };
 
 export const deleteItem = (dataID, token) => {
-  return fetch(`${baseUrl}/users/${dataID}`, {
+  return fetch(`${baseUrl}/items/${dataID}`, {
     method: "DELETE",
     headers: {
       authorization: `Bearer ${token}`,

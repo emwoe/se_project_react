@@ -33,7 +33,6 @@ function App() {
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({ name: "", email: "", avatar: "" });
   const [activeModal, setActiveModal] = useState("");
   const [itemForModal, setItemForModal] = useState({});
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -43,30 +42,47 @@ function App() {
   const [itemForDeleteID, setItemforDeleteID] = useState();
   const [itemToAdd, setItemToAdd] = useState({});
 
-  const handleRegistration = ({ data }) => {
+  const handleRegistration = ({ email, password, name, avatar }) => {
     auth
-      .register(data.email, data.newname, data.password, data.url)
-      .then(() => {
+      .register({ email, password, name, avatar })
+      .then((data) => {
+        console.log(data);
         setIsLoggedIn(true);
+        setCurrentUser({
+          name: data.name,
+          _id: data._id,
+          email: data.email,
+          avatar: data.avatar,
+        });
         handleModalClose();
-        //How should userData be set here?
       })
       .catch(console.error);
   };
 
-  const handleLogin = ({ data }) => {
+  const handleLogin = ({ email, password }) => {
     auth
-      .login(data.email, data.password)
+      .login({ email, password })
       .then((data) => {
-        if (data.jwt) {
-          //Where is data.jwt/data.user coming from?
-          token.setToken(data.jwt);
-          setUserData(data.user);
+        console.log(data);
+        if (data.usertoken) {
+          token.setToken(data.usertoken);
+          setCurrentUser(data.userdata);
           setIsLoggedIn(true);
           handleModalClose();
         }
       })
       .catch(console.error);
+  };
+
+  const handleRegClick = () => {
+    setActiveModal("register");
+    setIsMobileMenuOpen(false);
+    console.log(currentUser);
+  };
+
+  const handleLoginClick = () => {
+    setActiveModal("login");
+    setIsMobileMenuOpen(false);
   };
 
   const handleAddClick = () => {
@@ -104,6 +120,7 @@ function App() {
 
   const onAddItem = ({ values }, resetForm) => {
     const newItem = {};
+    const jwt = token.getToken();
     /*
     newItem._id = clothingItems[clothingItems.length - 1]._id + 1;
     */
@@ -111,7 +128,8 @@ function App() {
     newItem.name = values.name;
     newItem.weather = values.weather;
     newItem.imageUrl = values.url;
-    postItem(newItem)
+    //This works! Other routes should use the same technique!
+    postItem(newItem, jwt)
       .then(handleModalClose)
       .then(() => setClothingItems([newItem, ...clothingItems]))
       .then(resetForm)
@@ -119,7 +137,8 @@ function App() {
   };
 
   const deleteItemNow = () => {
-    deleteItem(itemForDeleteID)
+    const jwt = token.getToken();
+    deleteItem(itemForDeleteID, jwt)
       .then(() => {
         setClothingItems((cards) =>
           cards.filter((card) => card._id != itemForDeleteID)
@@ -165,7 +184,7 @@ function App() {
       document.removeEventListener("click", handleRemoteClick);
     };
   }, [activeModal]);
-  /*
+
   useEffect(() => {
     const jwt = token.getToken();
 
@@ -173,12 +192,13 @@ function App() {
       return;
     }
 
-    auth.getUserInfo(jwt).then(({ name, avatar, email }) => {
+    auth.getUserInfo(jwt).then((res) => {
+      console.log(res);
       setIsLoggedIn(true);
-      setUserData({ name, avatar, email });
+      setCurrentUser({ name: res.name, avatar: res.avatar, email: res.email });
+      console.log(currentUser);
     });
   }, []);
-  */
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -190,11 +210,12 @@ function App() {
             <Header
               handleAddClick={handleAddClick}
               handleHamburgerClick={handleHamburgerClick}
+              handleRegClick={handleRegClick}
+              handleLoginClick={handleLoginClick}
               handleToggleSwitch={handleToggleSwitch}
               handleMenuClose={handleMenuClose}
               isMobileMenuOpen={isMobileMenuOpen}
               weatherData={weatherData}
-              userData={userData}
             />
             <Routes>
               <Route

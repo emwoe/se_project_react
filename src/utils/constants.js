@@ -103,4 +103,4 @@ export const validationConfig = {
   errorMessageSelectorSuffix: "-input-error",
 };
 
-export const baseUrl = "http://localhost:3002";
+export const baseUrl = "http://localhost:3001";

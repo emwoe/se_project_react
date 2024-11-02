@@ -10,11 +10,17 @@ function RegisterModal({
   const { values, errors, isValid, handleChange } = useFormAndValidation();
 
   const handleSubmit = (evt) => {
+    console.log("Submitting!");
     evt.preventDefault();
     if (!isValid) {
       return;
     }
-    handleRegistration({ values });
+    handleRegistration({
+      email: values.email,
+      password: values.password,
+      name: values.newname,
+      avatar: values.url,
+    });
   };
 
   return (
@@ -71,7 +77,7 @@ function RegisterModal({
         id="newname"
         placeholder="Name"
         onChange={handleChange}
-        value={values.name || ""}
+        value={values.newname || ""}
         required
         minLength="2"
         maxLength="40"
