@@ -53,6 +53,7 @@ function App() {
           _id: data._id,
           email: data.email,
           avatar: data.avatar,
+          initial: data.name[0],
         });
         handleModalClose();
       })
@@ -192,11 +193,15 @@ function App() {
       return;
     }
 
-    auth.getUserInfo(jwt).then((res) => {
-      console.log(res);
+    auth.getUserInfo(jwt).then(({ data }) => {
       setIsLoggedIn(true);
-      setCurrentUser({ name: res.name, avatar: res.avatar, email: res.email });
-      console.log(currentUser);
+      setCurrentUser({
+        name: data.name,
+        avatar: data.avatar,
+        _id: data._id,
+        email: data.email,
+        initial: String(data.name)[0],
+      });
     });
   }, []);
 
@@ -216,6 +221,7 @@ function App() {
               handleMenuClose={handleMenuClose}
               isMobileMenuOpen={isMobileMenuOpen}
               weatherData={weatherData}
+              isLoggedIn={isLoggedIn}
             />
             <Routes>
               <Route

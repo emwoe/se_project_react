@@ -25,7 +25,7 @@
   margin-right: 32px;
 }
 
-.modal__delete-btn {
+.modal__delete-btn_vsbl {
   border: none;
   background-color: white;
   font-size: 20px;
@@ -33,6 +33,10 @@
   font-weight: 700;
   color: red;
   cursor: pointer;
+}
+
+.modal__delete-tbn_invsbl {
+  display: none;
 }
 
 .modal__item-name,

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import headerLogo from "../../assets/wtwr.png";
-import avatar from "../../assets/avatar.png";
 import closebtn from "../../assets/closebtn.png";
 import hamburger from "../../assets/hamburgermenu.png";
 import ToggleSwitch from "./ToggleSwitch/ToggleSwitch";
@@ -17,6 +16,7 @@ function Header({
   handleToggleSwitch,
   isMobileMenuOpen,
   weatherData,
+  isLoggedIn,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -48,20 +48,51 @@ function Header({
         >
           + Add clothes
         </button>
-        <button
-          type="button"
-          onClick={handleRegClick}
-          className="header__reg-btn"
+        <div
+          className={`header__right_loggedin ${
+            isLoggedIn === false && "header__right_loggedin-invsb"
+          }`}
         >
-          Sign Up
-        </button>
-        <button
-          type="button"
-          onClick={handleLoginClick}
-          className="header__login-btn"
+          <Link
+            className={`header__link ${
+              isMobileMenuOpen === true && "header__link_mobile"
+            }`}
+            to="/profile"
+          >
+            <p className="header__name">{currentUser.name}</p>
+            <p className="header__placeholder">
+              {!currentUser.avatar ? (
+                currentUser.initial
+              ) : (
+                <img
+                  src={currentUser.avatar}
+                  alt={currentUser.name}
+                  className="header__avatar"
+                />
+              )}
+            </p>
+          </Link>
+        </div>
+        <div
+          className={`header__right_loggedout ${
+            isLoggedIn === true && "header__right_loggedout-invsb"
+          }`}
         >
-          Login
-        </button>
+          <button
+            type="button"
+            onClick={handleRegClick}
+            className="header__reg-btn"
+          >
+            Sign Up
+          </button>
+          <button
+            type="button"
+            onClick={handleLoginClick}
+            className="header__login-btn"
+          >
+            Login
+          </button>
+        </div>
         <button
           type="button"
           onClick={handleMenuClose}
@@ -75,19 +106,6 @@ function Header({
             alt="exit button"
           ></img>
         </button>
-        <Link
-          className={`header__link ${
-            isMobileMenuOpen === true && "header__link_mobile"
-          }`}
-          to="/profile"
-        >
-          <p className="header__name">{currentUser.name}</p>
-          <img
-            alt="avatar"
-            className="header__avatar"
-            src={currentUser.avatar}
-          ></img>
-        </Link>
       </div>
       <img
         src={hamburger}

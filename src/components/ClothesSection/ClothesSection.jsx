@@ -1,13 +1,20 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
 
 import "../Profile/Profile.css";
 import ItemCard from "../Main/ItemCard/ItemCard";
+import { CurrentUserContext } from "../../contexts/CurrentUser";
 
 function ClothesSection({
   handleItemCardClick,
   clothingItems,
   handleAddClick,
 }) {
+  const currentUser = React.useContext(CurrentUserContext);
+  const ownClothes = clothingItems.filter(
+    (item) => item.owner === currentUser._id
+  );
+
   return (
     <div className="profile__cards">
       <div className="profile__heading">
@@ -21,7 +28,7 @@ function ClothesSection({
         </button>
       </div>
       <ul className="profile__list">
-        {clothingItems.map((item) => {
+        {ownClothes.map((item) => {
           return (
             <ItemCard
               key={item._id}

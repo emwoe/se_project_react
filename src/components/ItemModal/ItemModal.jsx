@@ -1,5 +1,7 @@
+import React from "react";
 import "./ItemModal.css";
 import closeBtnWhite from "../../assets/closebtnwhite.png";
+import { CurrentUserContext } from "../../contexts/CurrentUser";
 
 function ItemModal({
   activeModal,
@@ -7,6 +9,15 @@ function ItemModal({
   handleModalClose,
   handleDeleteClick,
 }) {
+  const currentUser = React.useContext(CurrentUserContext);
+
+  const isOwn = itemForModal.owner === currentUser._id;
+
+  // Creating a variable which you'll then set in `className` for the delete button
+  const itemDeleteButtonClassName = `item__delete-button ${
+    isOwn ? "modal__delete-btn_vsbl" : "modal__delete-tbn_invsbl"
+  }`;
+
   return (
     <div
       className={`modal modal_type_item ${
@@ -41,7 +52,7 @@ function ItemModal({
             <div className="modal__footer-right">
               <button
                 type="button"
-                className="modal__delete-btn"
+                className={itemDeleteButtonClassName}
                 onClick={handleDeleteClick}
               >
                 Delete item
