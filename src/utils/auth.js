@@ -31,6 +31,17 @@ export const login = ({ email, password }) => {
   }).then(checkResponse);
 };
 
+export const editUserInfo = ({ newName, newImageUrl }, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    body: JSON.stringify({ newName, newImageUrl }),
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+};
+
 export const getUserInfo = (token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",

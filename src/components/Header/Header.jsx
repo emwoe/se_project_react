@@ -60,9 +60,9 @@ function Header({
             to="/profile"
           >
             <p className="header__name">{currentUser.name}</p>
-            <p className="header__placeholder">
+            <div className="header__images">
               {!currentUser.avatar ? (
-                currentUser.initial
+                <p className="header__placeholder">{currentUser.initial}</p>
               ) : (
                 <img
                   src={currentUser.avatar}
@@ -70,7 +70,7 @@ function Header({
                   className="header__avatar"
                 />
               )}
-            </p>
+            </div>
           </Link>
         </div>
         <div

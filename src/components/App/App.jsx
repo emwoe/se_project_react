@@ -9,6 +9,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import ItemModal from "../ItemModal/ItemModal";
@@ -53,7 +54,7 @@ function App() {
           _id: data._id,
           email: data.email,
           avatar: data.avatar,
-          initial: data.name[0],
+          initial: data.name.split("")[0],
         });
         handleModalClose();
       })
@@ -79,6 +80,27 @@ function App() {
     setActiveModal("register");
     setIsMobileMenuOpen(false);
     console.log(currentUser);
+  };
+
+  const handleEditClick = () => {
+    setActiveModal("edit-profile");
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleProfileChanges = ({ newName, newImageUrl }) => {
+    const jwt = token.getToken();
+    auth.editUserInfo({ newName, newImageUrl }, jwt).then(
+      auth.getUserInfo(jwt).then(({ data }) => {
+        setCurrentUser({
+          name: data.name,
+          avatar: data.avatar,
+          _id: data._id,
+          email: data.email,
+          initial: data.name.split("")[0],
+        });
+      })
+    );
+    handleModalClose();
   };
 
   const handleLoginClick = () => {
@@ -200,7 +222,7 @@ function App() {
         avatar: data.avatar,
         _id: data._id,
         email: data.email,
-        initial: String(data.name)[0],
+        initial: data.name.split("")[0],
       });
     });
   }, []);
@@ -243,6 +265,7 @@ function App() {
                       handleItemCardClick={handleItemCardClick}
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
+                      handleEditClick={handleEditClick}
                     />
                   </ProtectedRoute>
                 }
@@ -262,6 +285,12 @@ function App() {
             handleModalClose={handleModalClose}
             isOpen={activeModal === "login"}
             handleLogin={handleLogin}
+          />
+          <EditProfileModal
+            activeModal={activeModal}
+            handleModalClose={handleModalClose}
+            isOpen={activeModal === "edit-profile"}
+            handleProfileChanges={handleProfileChanges}
           />
           <AddItemModal
             activeModal={activeModal}

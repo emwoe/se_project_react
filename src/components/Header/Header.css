@@ -25,6 +25,8 @@
 
 .header__link {
   display: flex;
+  text-decoration: none;
+  color: black;
   flex-direction: row;
   margin: auto 0;
   padding: 0;
@@ -56,6 +58,12 @@
   min-width: fit-content;
 }
 
+.header__images {
+  height: fit-content;
+  margin: auto 0;
+  margin-left: 12px;
+}
+
 .header__placeholder {
   margin: auto 0;
   margin-left: 12px;
@@ -63,7 +71,7 @@
   width: 30px;
   border-radius: 50%;
   object-fit: contain;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.5);
   color: rgba(255, 255, 255, 1);
   font-family: Cabinet Grotesk;
