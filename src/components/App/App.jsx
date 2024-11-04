@@ -47,7 +47,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [itemForDeleteID, setItemforDeleteID] = useState();
-  const [itemForLikeClick, setItemForLikeCLick] = useState();
   const [itemToAdd, setItemToAdd] = useState({});
 
   const handleRegistration = ({ email, password, name, avatar }) => {
@@ -108,6 +107,11 @@ function App() {
       })
     );
     handleModalClose();
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    token.clearToken();
   };
 
   const handleLoginClick = () => {
@@ -179,7 +183,6 @@ function App() {
     newItem.weather = values.weather;
     newItem.imageUrl = values.url;
     newItem.likes = [];
-    //This works! Other routes should use the same technique!
     postItem(newItem, jwt)
       .then(handleModalClose)
       .then(() => setClothingItems([newItem, ...clothingItems]))
@@ -207,6 +210,12 @@ function App() {
       })
       .catch(console.error);
   }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => setClothingItems(data.data))
+      .catch(console.error);
+  }, [clothingItems, isLoggedIn]);
 
   useEffect(() => {
     getItems()
@@ -296,6 +305,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       handleEditClick={handleEditClick}
                       handleItemLike={handleItemLike}
+                      handleLogout={handleLogout}
                     />
                   </ProtectedRoute>
                 }

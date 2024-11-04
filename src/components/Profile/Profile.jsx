@@ -11,10 +11,11 @@ function Profile({
   handleAddClick,
   handleEditClick,
   handleItemLike,
+  handleLogout,
 }) {
   return (
     <main className="profile">
-      <Sidebar handleEditClick={handleEditClick} />
+      <Sidebar handleEditClick={handleEditClick} handleLogout={handleLogout} />
       <ClothesSection
         handleAddClick={handleAddClick}
         handleItemCardClick={handleItemCardClick}
