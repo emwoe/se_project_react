@@ -10,6 +10,7 @@ function Profile({
   clothingItems,
   handleAddClick,
   handleEditClick,
+  handleItemLike,
 }) {
   return (
     <main className="profile">
@@ -18,6 +19,7 @@ function Profile({
         handleAddClick={handleAddClick}
         handleItemCardClick={handleItemCardClick}
         clothingItems={clothingItems}
+        handleItemLike={handleItemLike}
       />
       <Outlet />
     </main>

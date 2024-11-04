@@ -1,9 +1,27 @@
+import React from "react";
 import "./ItemCard.css";
+import likebtn from "../../../assets/likebtn.png";
+import { CurrentUserContext } from "../../../contexts/CurrentUser";
 
-function ItemCard({ item, onCardClick }) {
+function ItemCard({ item, onCardClick, handleItemLike }) {
+  const currentUser = React.useContext(CurrentUserContext);
+  const isLiked = item.likes.includes(currentUser._id);
+
   return (
     <div className="item-card__wrapper">
-      <h2 className="item-card__title">{item.name}</h2>
+      <div className="item-card__header">
+        <h2 className="item-card__title">{item.name}</h2>
+        <img
+          className={`item-card__like-btn ${
+            isLiked === true && "item-card__like-btn_liked"
+          }`}
+          src={likebtn}
+          alt="heart like button"
+          onClick={() => {
+            handleItemLike({ id: item._id, isLiked });
+          }}
+        ></img>
+      </div>
       <img
         className="item-card__image"
         src={item.imageUrl}

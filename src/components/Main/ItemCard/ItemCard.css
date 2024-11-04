@@ -17,13 +17,28 @@
   height: 100%;
 }
 
-.item-card__title {
-  margin: 0;
-  padding: 2px 10px;
-  font-size: 14px;
+.item-card__header {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
   top: 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.item-card__title {
+  margin: 0;
+  padding: 2px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+
   background-color: white;
+}
+
+.item-card__like-btn {
+  margin-left: 10px;
+}
+
+.item-card__like-btn_liked {
+  background-color: red;
 }

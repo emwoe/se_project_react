@@ -9,6 +9,7 @@ function ClothesSection({
   handleItemCardClick,
   clothingItems,
   handleAddClick,
+  handleItemLike,
 }) {
   const currentUser = React.useContext(CurrentUserContext);
   const ownClothes = clothingItems.filter(
@@ -34,6 +35,7 @@ function ClothesSection({
               key={item._id}
               item={item}
               onCardClick={handleItemCardClick}
+              handleItemLike={handleItemLike}
             />
           );
         })}

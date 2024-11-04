@@ -16,7 +16,13 @@ import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import DeleteItemCheckModal from "../DeleteItemCheckModal/DeleteItemCheckModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
-import { getItems, postItem, deleteItem } from "../../utils/api.js";
+import {
+  getItems,
+  postItem,
+  addCardLike,
+  removeCardLike,
+  deleteItem,
+} from "../../utils/api.js";
 import FormValidator from "../../utils/FormValidator";
 import * as auth from "../../utils/auth.js";
 import * as token from "../../utils/token.js";
@@ -41,6 +47,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [itemForDeleteID, setItemforDeleteID] = useState();
+  const [itemForLikeClick, setItemForLikeCLick] = useState();
   const [itemToAdd, setItemToAdd] = useState({});
 
   const handleRegistration = ({ email, password, name, avatar }) => {
@@ -141,6 +148,26 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
+  const handleItemLike = ({ id, isLiked }) => {
+    console.log(id);
+    const jwt = token.getToken();
+    !isLiked
+      ? addCardLike(id, jwt)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : removeCardLike(id, jwt)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
   const onAddItem = ({ values }, resetForm) => {
     const newItem = {};
     const jwt = token.getToken();
@@ -151,6 +178,7 @@ function App() {
     newItem.name = values.name;
     newItem.weather = values.weather;
     newItem.imageUrl = values.url;
+    newItem.likes = [];
     //This works! Other routes should use the same technique!
     postItem(newItem, jwt)
       .then(handleModalClose)
@@ -253,6 +281,7 @@ function App() {
                     weatherData={weatherData}
                     handleItemCardClick={handleItemCardClick}
                     clothingItems={clothingItems}
+                    handleItemLike={handleItemLike}
                   />
                 }
               />
@@ -266,6 +295,7 @@ function App() {
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
                       handleEditClick={handleEditClick}
+                      handleItemLike={handleItemLike}
                     />
                   </ProtectedRoute>
                 }
