@@ -4,7 +4,6 @@ import { CurrentTemperatureUnitContext } from "../../../contexts/CurrentTemperat
 
 function ToggleSwitch() {
   const tempUnit = React.useContext(CurrentTemperatureUnitContext);
-  console.log(tempUnit);
 
   return (
     <>
