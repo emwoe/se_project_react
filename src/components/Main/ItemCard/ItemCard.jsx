@@ -1,7 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
 import "./ItemCard.css";
-import { getItems } from "../../../utils/api";
 import likebtn from "../../../assets/likebtn.png";
 import likebtnliked from "../../../assets/likebtnliked.png";
 
