@@ -10,6 +10,8 @@ function ModalWithForm({
   onSubmit,
   isValid,
   buttonText,
+  secondbuttonText,
+  onSecondClick,
 }) {
   return (
     <div
@@ -32,13 +34,23 @@ function ModalWithForm({
           </button>
           <h3 className="modal__title">{title}</h3>
           {children}
-          <button
-            type="submit"
-            className="modal__submit-btn"
-            disabled={!isValid}
-          >
-            {buttonText}
-          </button>
+          <div className="modal__btns">
+            <button
+              type="submit"
+              className="modal__submit-btn"
+              disabled={!isValid}
+            >
+              {buttonText}
+            </button>
+            <button
+              onClick={onSecondClick}
+              className={`modal__second-btn ${
+                secondbuttonText === null ? "modal__second-btn_invsbl" : ""
+              }`}
+            >
+              {secondbuttonText}
+            </button>
+          </div>
         </form>
       </div>
     </div>

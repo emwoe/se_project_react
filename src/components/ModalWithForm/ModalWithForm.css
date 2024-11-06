@@ -104,6 +104,11 @@
   color: black;
 }
 
+.modal__btns {
+  display: flex;
+  flex-direction: row;
+}
+
 .modal__submit-btn {
   color: white;
   margin-top: 32px;
@@ -124,6 +129,24 @@
 
 .modal__btn_inactive {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal__second-btn {
+  color: gray;
+  margin-top: 32px;
+  margin-bottom: 36px;
+  margin-left: 10px;
+  font-size: 16px;
+  line-height: 20px;
+  border: none;
+  background-color: white;
+  border-radius: 4px;
+  padding: 8px 16px;
+  width: fit-content;
+}
+
+.modal__second-btn_invsbl {
+  display: none;
 }
 
 .modal__input-error_active {

@@ -48,10 +48,11 @@ export const removeCardLike = (id, token) => {
   }).then(checkResponse);
 };
 
-export const deleteItem = (dataID, token) => {
-  return fetch(`${baseUrl}/items/${dataID}`, {
+export const deleteItem = (id, token) => {
+  return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
+      "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);

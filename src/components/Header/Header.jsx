@@ -41,18 +41,19 @@ function Header({
         }`}
       >
         <ToggleSwitch handleToggleSwitch={handleToggleSwitch} />
-        <button
-          type="button"
-          onClick={handleAddClick}
-          className="header__add-clothes-btn"
-        >
-          + Add clothes
-        </button>
+
         <div
           className={`header__right_loggedin ${
             isLoggedIn === false && "header__right_loggedin-invsb"
           }`}
         >
+          <button
+            type="button"
+            onClick={handleAddClick}
+            className="header__add-clothes-btn"
+          >
+            + Add clothes
+          </button>
           <Link
             className={`header__link ${
               isMobileMenuOpen === true && "header__link_mobile"

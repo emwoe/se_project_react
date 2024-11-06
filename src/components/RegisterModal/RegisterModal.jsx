@@ -6,6 +6,7 @@ function RegisterModal({
   activeModal,
   isOpen,
   handleRegistration,
+  handleLoginClick,
 }) {
   const { values, errors, isValid, handleChange } = useFormAndValidation();
 
@@ -27,6 +28,8 @@ function RegisterModal({
     <ModalWithForm
       title="Sign up"
       buttonText="Next"
+      secondbuttonText="or Log in"
+      onSecondClick={handleLoginClick}
       name="register"
       handleModalClose={handleModalClose}
       isOpen={activeModal === "register"}

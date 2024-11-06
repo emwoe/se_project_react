@@ -39,6 +39,10 @@
   margin-left: 10px;
 }
 
+.item-card__like-btn_invsbl {
+  display: none;
+}
+
 .item-card__like-btn_liked {
   background-color: red;
 }

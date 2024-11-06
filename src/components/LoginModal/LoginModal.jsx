@@ -1,7 +1,13 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
-function LoginModal({ handleModalClose, activeModal, isOpen, handleLogin }) {
+function LoginModal({
+  handleModalClose,
+  activeModal,
+  isOpen,
+  handleLogin,
+  handleRegClick,
+}) {
   const { values, errors, isValid, resetForm, handleChange } =
     useFormAndValidation();
 
@@ -17,6 +23,8 @@ function LoginModal({ handleModalClose, activeModal, isOpen, handleLogin }) {
     <ModalWithForm
       title="Log in"
       buttonText="Log in"
+      secondbuttonText="or Sign up"
+      onSecondClick={handleRegClick}
       name="login"
       handleModalClose={handleModalClose}
       isOpen={activeModal === "login"}
