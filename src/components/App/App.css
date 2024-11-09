@@ -2,7 +2,8 @@
   background-color: #f3f3f3;
   font-family: "Cabinet Grotesk";
   font-weight: bold;
-  width: 100vw;
+  width: 100%;
+  overflow-x: hidden;
   height: fit-content;
 }
 

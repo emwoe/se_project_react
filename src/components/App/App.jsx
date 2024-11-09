@@ -190,9 +190,11 @@ function App() {
     newItem.imageUrl = values.url;
     newItem.likes = [];
     postItem(newItem, jwt)
-      .then(handleModalClose)
-      .then(() => setClothingItems([newItem, ...clothingItems]))
-      .then(resetForm)
+      .then((newItem) => {
+        setClothingItems((currentItems) => [newItem.data, ...currentItems]);
+        handleModalClose();
+        resetForm();
+      })
       .catch(console.error);
   };
 
