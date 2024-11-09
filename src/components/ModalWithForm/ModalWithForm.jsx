@@ -11,9 +11,8 @@ function ModalWithForm({
   isValid,
   buttonText,
   secondbuttonText,
-  /*
+
   onSecondClick,
-  */
 }) {
   return (
     <div
@@ -45,9 +44,8 @@ function ModalWithForm({
               {buttonText}
             </button>
             <button
-              /*
+              type="button"
               onClick={onSecondClick}
-              */
               className={`modal__second-btn ${
                 secondbuttonText === null ? "modal__second-btn_invsbl" : ""
               }`}

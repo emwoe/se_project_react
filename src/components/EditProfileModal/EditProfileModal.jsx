@@ -1,5 +1,7 @@
+import { useContext, useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import { CurrentUserContext } from "../../contexts/CurrentUser";
 
 function EditProfileModal({
   handleModalClose,
@@ -7,6 +9,17 @@ function EditProfileModal({
   isOpen,
   handleProfileChanges,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+  const [userName, setUserName] = useState();
+  const [avatarUrl, setAvatarUrl] = useState();
+
+  useEffect(() => {
+    if (currentUser) {
+      setUserName(currentUser.name);
+      setAvatarUrl(currentUser.avatar);
+    }
+  }, [currentUser]);
+
   const { values, errors, isValid, resetForm, handleChange } =
     useFormAndValidation();
 
@@ -39,7 +52,7 @@ function EditProfileModal({
         name="newName"
         className="modal__input"
         id="changeName"
-        placeholder="Name"
+        placeholder={userName}
         onChange={handleChange}
         value={values.newName || ""}
         required
@@ -58,7 +71,7 @@ function EditProfileModal({
         type="url"
         className="modal__input"
         id="newImageUrl"
-        placeholder="Image URL"
+        placeholder={avatarUrl}
         name="newImageUrl"
         pattern="https?://.+"
         onChange={handleChange}

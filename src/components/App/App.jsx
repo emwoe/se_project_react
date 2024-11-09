@@ -189,6 +189,7 @@ function App() {
     newItem.weather = values.weather;
     newItem.imageUrl = values.url;
     newItem.likes = [];
+    console.log(clothingItems);
     postItem(newItem, jwt)
       .then((newItem) => {
         setClothingItems((currentItems) => [newItem.data, ...currentItems]);
