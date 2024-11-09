@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import React from "react";
 
 import "./App.css";
@@ -47,6 +47,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [currentUser, setCurrentUser] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
+  const [ownClothes, setOwnClothes] = useState([]);
   const [itemForDeleteID, setItemforDeleteID] = useState();
   const [changeInLikes, setChangeInLikes] = useState(false);
 
@@ -184,11 +185,6 @@ function App() {
   const onAddItem = ({ values }, resetForm) => {
     const newItem = {};
     const jwt = token.getToken();
-    /*
-    newItem._id = clothingItems[clothingItems.length - 1]._id + 1;
-    
-    newItem._id = Math.random();
-    */
     newItem.name = values.name;
     newItem.weather = values.weather;
     newItem.imageUrl = values.url;
@@ -210,6 +206,7 @@ function App() {
         );
         handleModalClose();
       })
+      .then(console.log(clothingItems))
       .catch(console.error);
   };
 
@@ -222,20 +219,11 @@ function App() {
       .catch(console.error);
   }, []);
 
-  //I removed clothingItems as a dependency because it was causing
-  //the infiniting loop of getItems calls. But without it, I can't
-  //figure out how to get the cards to re-render properly after a "like"
   useEffect(() => {
     getItems()
       .then((data) => setClothingItems(data.data))
       .catch(console.error);
   }, [isLoggedIn, changeInLikes]);
-
-  useEffect(() => {
-    getItems()
-      .then((data) => setClothingItems(data.data))
-      .catch(console.error);
-  }, []);
 
   useEffect(() => {
     function handleEscClose(evt) {

@@ -8,6 +8,7 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 function Profile({
   handleItemCardClick,
   clothingItems,
+
   handleAddClick,
   handleEditClick,
   handleItemLike,

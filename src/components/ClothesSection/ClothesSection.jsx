@@ -12,6 +12,7 @@ function ClothesSection({
   handleItemLike,
 }) {
   const currentUser = React.useContext(CurrentUserContext);
+
   const ownClothes = clothingItems.filter(
     (item) => item.owner === currentUser._id
   );

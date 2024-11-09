@@ -4,7 +4,6 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 function EditProfileModal({
   handleModalClose,
   activeModal,
-  onAddItem,
   isOpen,
   handleProfileChanges,
 }) {
