@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { CurrentUserContext } from "../../contexts/CurrentUser";
@@ -6,24 +6,14 @@ import { CurrentUserContext } from "../../contexts/CurrentUser";
 function EditProfileModal({
   handleModalClose,
   activeModal,
-  isOpen,
   handleProfileChanges,
 }) {
   const currentUser = useContext(CurrentUserContext);
-  const [userName, setUserName] = useState();
-  const [avatarUrl, setAvatarUrl] = useState();
 
-  useEffect(() => {
-    if (currentUser) {
-      setUserName(currentUser.name);
-      setAvatarUrl(currentUser.avatar);
-    }
-  }, [currentUser]);
-
-  const { values, errors, isValid, resetForm, handleChange } =
-    useFormAndValidation();
+  const { values, errors, handleChange, resetForm } = useFormAndValidation();
 
   const handleSubmit = (evt) => {
+    console.log("Submitted");
     evt.preventDefault();
     if (!isValid) {
       return;
@@ -32,6 +22,7 @@ function EditProfileModal({
       newName: values.newName,
       newImageUrl: values.newImageUrl,
     });
+    resetForm();
   };
 
   return (
@@ -42,7 +33,6 @@ function EditProfileModal({
       handleModalClose={handleModalClose}
       isOpen={activeModal === "edit-profile"}
       onSubmit={handleSubmit}
-      isValid={isValid}
     >
       <label className="modal__label" htmlFor="name">
         Name*
@@ -51,8 +41,8 @@ function EditProfileModal({
         type="text"
         name="newName"
         className="modal__input"
-        id="changeName"
-        placeholder={userName}
+        id="newName"
+        placeholder={currentUser.name}
         onChange={handleChange}
         value={values.newName || ""}
         required
@@ -71,10 +61,11 @@ function EditProfileModal({
         type="url"
         className="modal__input"
         id="newImageUrl"
-        placeholder={avatarUrl}
+        placeholder="avatar Url"
         name="newImageUrl"
         pattern="https?://.+"
         onChange={handleChange}
+        default={currentUser.avatar}
         value={values.newImageUrl || ""}
         required
       ></input>

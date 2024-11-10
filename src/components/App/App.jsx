@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import React from "react";
 
 import "./App.css";
-import { coordinates, APIkey, validationConfig } from "../../utils/constants";
+import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -23,7 +22,6 @@ import {
   removeCardLike,
   deleteItem,
 } from "../../utils/api.js";
-import FormValidator from "../../utils/FormValidator";
 import * as auth from "../../utils/auth.js";
 import * as token from "../../utils/token.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -47,7 +45,6 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [currentUser, setCurrentUser] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
-  const [ownClothes, setOwnClothes] = useState([]);
   const [itemForDeleteID, setItemforDeleteID] = useState();
   const [changeInLikes, setChangeInLikes] = useState(false);
 

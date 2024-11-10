@@ -4,11 +4,11 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 function RegisterModal({
   handleModalClose,
   activeModal,
-  isOpen,
   handleRegistration,
   handleLoginClick,
 }) {
-  const { values, errors, isValid, handleChange } = useFormAndValidation();
+  const { values, isValid, errors, handleChange, resetForm } =
+    useFormAndValidation();
 
   const handleSubmit = (evt) => {
     console.log("Submitting!");
@@ -22,6 +22,7 @@ function RegisterModal({
       name: values.newname,
       avatar: values.url,
     });
+    resetForm();
   };
 
   return (
@@ -34,7 +35,6 @@ function RegisterModal({
       handleModalClose={handleModalClose}
       isOpen={activeModal === "register"}
       onSubmit={handleSubmit}
-      isValid={isValid}
     >
       <label className="modal__label" htmlFor="email">
         Email*
@@ -49,8 +49,8 @@ function RegisterModal({
         value={values.email || ""}
         required
       ></input>
-      {errors.name && (
-        <span className="modal__input-error_active">{errors.name}</span>
+      {errors.email && (
+        <span className="modal__input-error_active">{errors.email}</span>
       )}
       <label className="modal__label" htmlFor="password">
         Password
@@ -67,8 +67,8 @@ function RegisterModal({
         minLength="8"
         maxLength="40"
       ></input>
-      {errors.name && (
-        <span className="modal__input-error_active">{errors.name}</span>
+      {errors.password && (
+        <span className="modal__input-error_active">{errors.password}</span>
       )}
       <label className="modal__label" htmlFor="newname">
         Name*
@@ -85,8 +85,8 @@ function RegisterModal({
         minLength="2"
         maxLength="40"
       ></input>
-      {errors.name && (
-        <span className="modal__input-error_active">{errors.name}</span>
+      {errors.newname && (
+        <span className="modal__input-error_active">{errors.newname}</span>
       )}
 
       <label className="modal__label" htmlFor="avatarUrl">

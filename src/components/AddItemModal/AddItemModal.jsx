@@ -1,7 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
-function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
+function AddItemModal({ handleModalClose, activeModal, onAddItem }) {
   const { values, errors, isValid, resetForm, handleChange } =
     useFormAndValidation();
 
@@ -21,7 +21,6 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem, isOpen }) {
       handleModalClose={handleModalClose}
       isOpen={activeModal === "add-garment"}
       onSubmit={handleSubmit}
-      isValid={isValid}
     >
       <label className="modal__label" htmlFor="name">
         Name

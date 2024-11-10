@@ -1,10 +1,9 @@
-import js from "@eslint/js";
-import globals from "globals";
-import react from "eslint-plugin-react";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
+const js = require("@eslint/js");
+const globals = require("globals");
+const react = require("eslint-plugin-react");
+const reactHooks = require("eslint-plugin-react-hooks");
+const reactRefresh = require("eslint-plugin-react-refresh");
 
-//Below is copied from the project, replacing what was automatically generated
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
@@ -23,17 +22,10 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
-
-    // Disable prop-types validation.
     "react/prop-types": 0,
   },
-
-  // Add an overrides array. Without this, ESLint could only be run via
-  // the npm run lint command. Adding this will allow it to be run also
-  // via the global `npx eslint .` command.
   overrides: [
     {
-      // Without this, `npx eslint .` doesn't run on jsx files.
       files: ["*.js", "*.jsx"],
     },
   ],

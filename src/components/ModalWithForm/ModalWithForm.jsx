@@ -1,5 +1,6 @@
 import "./ModalWithForm.css";
 import closeBtn from "../../assets/closebtn.png";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 function ModalWithForm({
   title,
@@ -8,12 +9,12 @@ function ModalWithForm({
   children,
   isOpen,
   onSubmit,
-  isValid,
   buttonText,
   secondbuttonText,
-
   onSecondClick,
 }) {
+  const { isValid } = useFormAndValidation();
+
   return (
     <div
       className={`modal modal_type_${name} ${
@@ -38,7 +39,9 @@ function ModalWithForm({
           <div className="modal__btns">
             <button
               type="submit"
-              className="modal__submit-btn"
+              className={`modal__submit-btn ${
+                !isValid ? "modal__btn_inactive" : ""
+              }`}
               disabled={!isValid}
             >
               {buttonText}

@@ -4,12 +4,10 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 function LoginModal({
   handleModalClose,
   activeModal,
-  isOpen,
   handleLogin,
   handleRegClick,
 }) {
-  const { values, errors, isValid, resetForm, handleChange } =
-    useFormAndValidation();
+  const { values, errors, isValid, handleChange } = useFormAndValidation();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -29,7 +27,6 @@ function LoginModal({
       handleModalClose={handleModalClose}
       isOpen={activeModal === "login"}
       onSubmit={handleSubmit}
-      isValid={isValid}
     >
       <label className="modal__label" htmlFor="loginemail">
         Email
@@ -44,8 +41,8 @@ function LoginModal({
         value={values.loginemail || ""}
         required
       ></input>
-      {errors.name && (
-        <span className="modal__input-error_active">{errors.name}</span>
+      {errors.loginemail && (
+        <span className="modal__input-error_active">{errors.loginemail}</span>
       )}
       <label className="modal__label" htmlFor="loginpassword">
         Password
@@ -62,8 +59,10 @@ function LoginModal({
         minLength="8"
         maxLength="40"
       ></input>
-      {errors.name && (
-        <span className="modal__input-error_active">{errors.name}</span>
+      {errors.loginpassword && (
+        <span className="modal__input-error_active">
+          {errors.loginpassword}
+        </span>
       )}
     </ModalWithForm>
   );
