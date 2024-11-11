@@ -1,6 +1,6 @@
 import { baseUrl } from "./constants";
 
-function checkResponse(res) {
+export function checkResponse(res) {
   if (res.ok) {
     return res.json();
   } else {

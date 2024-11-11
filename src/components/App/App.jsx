@@ -45,8 +45,10 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [currentUser, setCurrentUser] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
-  const [itemForDeleteID, setItemforDeleteID] = useState();
+  const [itemForDeleteID, setItemforDeleteID] = useState("");
+  /*
   const [changeInLikes, setChangeInLikes] = useState(false);
+  */
 
   const handleRegistration = ({ email, password, name, avatar }) => {
     auth
@@ -84,7 +86,6 @@ function App() {
   const handleRegClick = () => {
     setActiveModal("register");
     setIsMobileMenuOpen(false);
-    console.log(currentUser);
   };
 
   const handleEditClick = () => {
@@ -94,18 +95,21 @@ function App() {
 
   const handleProfileChanges = ({ newName, newImageUrl }) => {
     const jwt = token.getToken();
-    auth.editUserInfo({ newName, newImageUrl }, jwt).then(
-      auth.getUserInfo(jwt).then(({ data }) => {
-        setCurrentUser({
-          name: data.name,
-          avatar: data.avatar,
-          _id: data._id,
-          email: data.email,
-          initial: data.name.split("")[0],
-        });
-      })
-    );
-    handleModalClose();
+    auth
+      .editUserInfo({ newName, newImageUrl }, jwt)
+      .then(
+        auth.getUserInfo(jwt).then(({ data }) => {
+          setCurrentUser({
+            name: data.name,
+            avatar: data.avatar,
+            _id: data._id,
+            email: data.email,
+            initial: data.name.split("")[0],
+          });
+        })
+      )
+      .then(handleModalClose)
+      .catch(console.error);
   };
 
   const handleLogout = () => {
@@ -155,17 +159,19 @@ function App() {
   const handleItemLike = ({ id, isLiked }) => {
     console.log(isLiked);
     const jwt = token.getToken();
+    console.log(clothingItems);
     !isLiked
       ? addCardLike(id, jwt)
           .then((updatedCard) => {
             console.log(updatedCard);
+
             setClothingItems((cards) =>
               cards.map((item) =>
                 item._id === id ? { ...item, ...updatedCard } : item
               )
             );
-            setChangeInLikes(!changeInLikes);
           })
+          .then(console.log(clothingItems))
           .catch((err) => console.log(err))
       : removeCardLike(id, jwt)
           .then((updatedCard) => {
@@ -174,10 +180,24 @@ function App() {
                 item._id === id ? { ...item, ...updatedCard } : item
               )
             );
-            setChangeInLikes(!changeInLikes);
           })
           .catch((err) => console.log(err));
   };
+
+  const updateIsLiked = (id) => {
+    setClothingItems((prevItems) =>
+      prevItems.map((item) =>
+        item._id === id
+          ? { ...item, likes: toggleLike(item.likes, currentUser._id) }
+          : item
+      )
+    );
+  };
+
+  const toggleLike = (likes, userId) =>
+    likes.includes(userId)
+      ? likes.filter((id) => id !== userId)
+      : [...likes, userId];
 
   const onAddItem = ({ values }, resetForm) => {
     const newItem = {};
@@ -189,7 +209,7 @@ function App() {
     console.log(clothingItems);
     postItem(newItem, jwt)
       .then((newItem) => {
-        setClothingItems((currentItems) => [newItem.data, ...currentItems]);
+        setClothingItems((currentItems) => [...currentItems, newItem.data]);
         handleModalClose();
         resetForm();
       })
@@ -204,9 +224,8 @@ function App() {
         setClothingItems((cards) =>
           cards.filter((card) => card._id != itemForDeleteID)
         );
-        handleModalClose();
       })
-      .then(console.log(clothingItems))
+      .then(handleModalClose)
       .catch(console.error);
   };
 
@@ -220,10 +239,22 @@ function App() {
   }, []);
 
   useEffect(() => {
+    console.log("Updated clothingItems:", clothingItems);
+  }, [clothingItems]);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => setClothingItems(data.data))
+      .catch(console.error);
+  }, []);
+
+  /*
+  useEffect(() => {
     getItems()
       .then((data) => setClothingItems(data.data))
       .catch(console.error);
   }, [isLoggedIn, changeInLikes]);
+  */
 
   useEffect(() => {
     function handleEscClose(evt) {
@@ -283,7 +314,6 @@ function App() {
                 handleMenuClose={handleMenuClose}
                 isMobileMenuOpen={isMobileMenuOpen}
                 weatherData={weatherData}
-                isLoggedIn={isLoggedIn}
               />
               <Routes>
                 <Route
@@ -294,6 +324,7 @@ function App() {
                       handleItemCardClick={handleItemCardClick}
                       clothingItems={clothingItems}
                       handleItemLike={handleItemLike}
+                      updateIsLiked={updateIsLiked}
                     />
                   }
                 />
@@ -309,6 +340,7 @@ function App() {
                         handleEditClick={handleEditClick}
                         handleItemLike={handleItemLike}
                         handleLogout={handleLogout}
+                        updateIsLiked={updateIsLiked}
                       />
                     </ProtectedRoute>
                   }

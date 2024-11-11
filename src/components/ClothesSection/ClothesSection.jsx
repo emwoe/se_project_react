@@ -10,6 +10,7 @@ function ClothesSection({
   clothingItems,
   handleAddClick,
   handleItemLike,
+  updateIsLiked,
 }) {
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -37,6 +38,8 @@ function ClothesSection({
               item={item}
               onCardClick={handleItemCardClick}
               handleItemLike={handleItemLike}
+              clothingItems={clothingItems}
+              updateIsLiked={updateIsLiked}
             />
           );
         })}

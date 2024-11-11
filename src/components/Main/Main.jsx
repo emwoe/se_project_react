@@ -9,6 +9,7 @@ function Main({
   handleItemCardClick,
   clothingItems,
   handleItemLike,
+  updateIsLiked,
 }) {
   const tempUnit = React.useContext(CurrentTemperatureUnitContext);
 
@@ -35,6 +36,7 @@ function Main({
                   item={item}
                   onCardClick={handleItemCardClick}
                   handleItemLike={handleItemLike}
+                  updateIsLiked={updateIsLiked}
                 />
               );
             })}

@@ -6,6 +6,7 @@ import hamburger from "../../assets/hamburgermenu.png";
 import ToggleSwitch from "./ToggleSwitch/ToggleSwitch";
 import "./Header.css";
 import { CurrentUserContext } from "../../contexts/CurrentUser";
+import { IsLoggedInContext } from "../../contexts/IsLoggedIn";
 
 function Header({
   handleAddClick,
@@ -16,7 +17,6 @@ function Header({
   handleToggleSwitch,
   isMobileMenuOpen,
   weatherData,
-  isLoggedIn,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -24,6 +24,7 @@ function Header({
   });
 
   const currentUser = React.useContext(CurrentUserContext);
+  const isLoggedIn = React.useContext(IsLoggedInContext);
 
   return (
     <header className="header">

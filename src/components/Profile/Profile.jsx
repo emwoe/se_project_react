@@ -13,6 +13,7 @@ function Profile({
   handleEditClick,
   handleItemLike,
   handleLogout,
+  updateIsLiked,
 }) {
   return (
     <main className="profile">
@@ -22,6 +23,7 @@ function Profile({
         handleItemCardClick={handleItemCardClick}
         clothingItems={clothingItems}
         handleItemLike={handleItemLike}
+        updateIsLiked={updateIsLiked}
       />
       <Outlet />
     </main>

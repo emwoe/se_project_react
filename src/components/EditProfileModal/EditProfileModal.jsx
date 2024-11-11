@@ -34,7 +34,7 @@ function EditProfileModal({
       isOpen={activeModal === "edit-profile"}
       onSubmit={handleSubmit}
     >
-      <label className="modal__label" htmlFor="name">
+      <label className="modal__label" htmlFor="newName">
         Name*
       </label>
       <input
