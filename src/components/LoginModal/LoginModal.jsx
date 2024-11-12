@@ -6,6 +6,7 @@ function LoginModal({
   activeModal,
   handleLogin,
   handleRegClick,
+  isLoading,
 }) {
   const { values, errors, isValid, handleChange } = useFormAndValidation();
 
@@ -20,7 +21,7 @@ function LoginModal({
   return (
     <ModalWithForm
       title="Log in"
-      buttonText="Log in"
+      buttonText={isLoading ? "Saving..." : "Log in"}
       secondbuttonText="or Sign up"
       onSecondClick={handleRegClick}
       name="login"

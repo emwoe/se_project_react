@@ -1,7 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
-function AddItemModal({ handleModalClose, activeModal, onAddItem }) {
+function AddItemModal({ handleModalClose, activeModal, onAddItem, isLoading }) {
   const { values, errors, isValid, resetForm, handleChange } =
     useFormAndValidation();
 
@@ -16,7 +16,7 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem }) {
   return (
     <ModalWithForm
       title="New garment"
-      buttonText="Add garment"
+      buttonText={isLoading ? "Saving..." : "Add garment"}
       name="garment"
       handleModalClose={handleModalClose}
       isOpen={activeModal === "add-garment"}

@@ -46,15 +46,23 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [itemForDeleteID, setItemforDeleteID] = useState("");
-  /*
-  const [changeInLikes, setChangeInLikes] = useState(false);
-  */
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleModalClose = () => {
+    setActiveModal("");
+  };
+
+  function handleSubmit(request) {
+    setIsLoading(true);
+    request()
+      .then(handleModalClose)
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  }
 
   const handleRegistration = ({ email, password, name, avatar }) => {
-    auth
-      .register({ email, password, name, avatar })
-      .then((data) => {
-        console.log(data);
+    const makeRequest = () => {
+      return auth.register({ email, password, name, avatar }).then((data) => {
         setIsLoggedIn(true);
         setCurrentUser({
           name: data.name,
@@ -63,24 +71,24 @@ function App() {
           avatar: data.avatar,
           initial: data.name.split("")[0],
         });
-        handleModalClose();
-      })
-      .catch(console.error);
+      });
+    };
+    handleSubmit(makeRequest);
   };
 
   const handleLogin = ({ email, password }) => {
-    auth
-      .login({ email, password })
-      .then((data) => {
+    const makeRequest = () => {
+      return auth.login({ email, password }).then((data) => {
         console.log(data);
         if (data.usertoken) {
           token.setToken(data.usertoken);
           setCurrentUser(data.userdata);
           setIsLoggedIn(true);
-          handleModalClose();
         }
-      })
-      .catch(console.error);
+      });
+    };
+
+    handleSubmit(makeRequest);
   };
 
   const handleRegClick = () => {
@@ -95,9 +103,8 @@ function App() {
 
   const handleProfileChanges = ({ newName, newImageUrl }) => {
     const jwt = token.getToken();
-    auth
-      .editUserInfo({ newName, newImageUrl }, jwt)
-      .then(
+    const makeRequest = () => {
+      return auth.editUserInfo({ newName, newImageUrl }, jwt).then(
         auth.getUserInfo(jwt).then(({ data }) => {
           setCurrentUser({
             name: data.name,
@@ -107,9 +114,10 @@ function App() {
             initial: data.name.split("")[0],
           });
         })
-      )
-      .then(handleModalClose)
-      .catch(console.error);
+      );
+    };
+
+    handleSubmit(makeRequest);
   };
 
   const handleLogout = () => {
@@ -129,10 +137,6 @@ function App() {
 
   const handleDeleteClick = () => {
     setActiveModal("delete-check");
-  };
-
-  const handleModalClose = () => {
-    setActiveModal("");
   };
 
   const handleItemCardClick = (card) => {
@@ -206,14 +210,15 @@ function App() {
     newItem.weather = values.weather;
     newItem.imageUrl = values.url;
     newItem.likes = [];
-    console.log(clothingItems);
-    postItem(newItem, jwt)
-      .then((newItem) => {
+    const makeRequest = () => {
+      return postItem(newItem, jwt).then((newItem) => {
         setClothingItems((currentItems) => [...currentItems, newItem.data]);
         handleModalClose();
         resetForm();
-      })
-      .catch(console.error);
+      });
+    };
+
+    handleSubmit(makeRequest);
   };
 
   const deleteItemNow = () => {
@@ -247,14 +252,6 @@ function App() {
       .then((data) => setClothingItems(data.data))
       .catch(console.error);
   }, []);
-
-  /*
-  useEffect(() => {
-    getItems()
-      .then((data) => setClothingItems(data.data))
-      .catch(console.error);
-  }, [isLoggedIn, changeInLikes]);
-  */
 
   useEffect(() => {
     function handleEscClose(evt) {
@@ -355,6 +352,7 @@ function App() {
               isOpen={activeModal === "register"}
               handleRegistration={handleRegistration}
               handleLoginClick={handleLoginClick}
+              isLoading={isLoading}
             />
             <LoginModal
               activeModal={activeModal}
@@ -362,18 +360,21 @@ function App() {
               isOpen={activeModal === "login"}
               handleLogin={handleLogin}
               handleRegClick={handleRegClick}
+              isLoading={isLoading}
             />
             <EditProfileModal
               activeModal={activeModal}
               handleModalClose={handleModalClose}
               isOpen={activeModal === "edit-profile"}
               handleProfileChanges={handleProfileChanges}
+              isLoading={isLoading}
             />
             <AddItemModal
               activeModal={activeModal}
               handleModalClose={handleModalClose}
               isOpen={activeModal === "add-garment"}
               onAddItem={onAddItem}
+              isLoading={isLoading}
             />
             <ItemModal
               activeModal={activeModal}

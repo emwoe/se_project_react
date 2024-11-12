@@ -7,10 +7,12 @@ function EditProfileModal({
   handleModalClose,
   activeModal,
   handleProfileChanges,
+  isLoading,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const { values, errors, handleChange, resetForm } = useFormAndValidation();
+  const { values, isValid, errors, handleChange, resetForm } =
+    useFormAndValidation();
 
   const handleSubmit = (evt) => {
     console.log("Submitted");
@@ -28,7 +30,7 @@ function EditProfileModal({
   return (
     <ModalWithForm
       title="Change profile data"
-      buttonText="Save changes"
+      buttonText={isLoading ? "Saving..." : "Save changes"}
       name="edit-profile"
       handleModalClose={handleModalClose}
       isOpen={activeModal === "edit-profile"}
