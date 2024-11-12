@@ -28,6 +28,7 @@ function LoginModal({
       handleModalClose={handleModalClose}
       isOpen={activeModal === "login"}
       onSubmit={handleSubmit}
+      isValid={isValid}
     >
       <label className="modal__label" htmlFor="loginemail">
         Email

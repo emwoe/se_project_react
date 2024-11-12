@@ -11,11 +11,9 @@ function EditProfileModal({
 }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const { values, isValid, errors, handleChange, resetForm } =
-    useFormAndValidation();
+  const { values, isValid, errors, handleChange } = useFormAndValidation();
 
   const handleSubmit = (evt) => {
-    console.log("Submitted");
     evt.preventDefault();
     if (!isValid) {
       return;
@@ -24,7 +22,6 @@ function EditProfileModal({
       newName: values.newName,
       newImageUrl: values.newImageUrl,
     });
-    resetForm();
   };
 
   return (
@@ -35,6 +32,7 @@ function EditProfileModal({
       handleModalClose={handleModalClose}
       isOpen={activeModal === "edit-profile"}
       onSubmit={handleSubmit}
+      isValid={isValid}
     >
       <label className="modal__label" htmlFor="newName">
         Name*
@@ -63,11 +61,10 @@ function EditProfileModal({
         type="url"
         className="modal__input"
         id="newImageUrl"
-        placeholder="avatar Url"
         name="newImageUrl"
         pattern="https?://.+"
         onChange={handleChange}
-        default={currentUser.avatar}
+        placeholder={currentUser.avatar}
         value={values.newImageUrl || ""}
         required
       ></input>

@@ -12,9 +12,8 @@ function ModalWithForm({
   buttonText,
   secondbuttonText,
   onSecondClick,
+  isValid,
 }) {
-  const { isValid } = useFormAndValidation();
-
   return (
     <div
       className={`modal modal_type_${name} ${

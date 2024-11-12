@@ -36,6 +36,7 @@ function RegisterModal({
       handleModalClose={handleModalClose}
       isOpen={activeModal === "register"}
       onSubmit={handleSubmit}
+      isValid={isValid}
     >
       <label className="modal__label" htmlFor="email">
         Email*

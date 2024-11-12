@@ -21,6 +21,7 @@ function AddItemModal({ handleModalClose, activeModal, onAddItem, isLoading }) {
       handleModalClose={handleModalClose}
       isOpen={activeModal === "add-garment"}
       onSubmit={handleSubmit}
+      isValid={isValid}
     >
       <label className="modal__label" htmlFor="name">
         Name

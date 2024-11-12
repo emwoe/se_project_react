@@ -99,22 +99,26 @@ function App() {
   const handleEditClick = () => {
     setActiveModal("edit-profile");
     setIsMobileMenuOpen(false);
+    console.log(currentUser);
   };
 
   const handleProfileChanges = ({ newName, newImageUrl }) => {
     const jwt = token.getToken();
     const makeRequest = () => {
-      return auth.editUserInfo({ newName, newImageUrl }, jwt).then(
-        auth.getUserInfo(jwt).then(({ data }) => {
-          setCurrentUser({
-            name: data.name,
-            avatar: data.avatar,
-            _id: data._id,
-            email: data.email,
-            initial: data.name.split("")[0],
-          });
-        })
-      );
+      return auth
+        .editUserInfo({ newName, newImageUrl }, jwt)
+        .then(
+          auth.getUserInfo(jwt).then(({ data }) => {
+            setCurrentUser({
+              name: data.name,
+              avatar: data.avatar,
+              _id: data._id,
+              email: data.email,
+              initial: data.name.split("")[0],
+            });
+          })
+        )
+        .catch(console.error);
     };
 
     handleSubmit(makeRequest);
@@ -212,7 +216,7 @@ function App() {
     newItem.likes = [];
     const makeRequest = () => {
       return postItem(newItem, jwt).then((newItem) => {
-        setClothingItems((currentItems) => [...currentItems, newItem.data]);
+        setClothingItems((currentItems) => [newItem.data, ...currentItems]);
         handleModalClose();
         resetForm();
       });
@@ -282,16 +286,19 @@ function App() {
       return;
     }
 
-    auth.getUserInfo(jwt).then(({ data }) => {
-      setIsLoggedIn(true);
-      setCurrentUser({
-        name: data.name,
-        avatar: data.avatar,
-        _id: data._id,
-        email: data.email,
-        initial: data.name.split("")[0],
-      });
-    });
+    auth
+      .getUserInfo(jwt)
+      .then(({ data }) => {
+        setIsLoggedIn(true);
+        setCurrentUser({
+          name: data.name,
+          avatar: data.avatar,
+          _id: data._id,
+          email: data.email,
+          initial: data.name.split("")[0],
+        });
+      })
+      .catch(console.error);
   }, []);
 
   return (
