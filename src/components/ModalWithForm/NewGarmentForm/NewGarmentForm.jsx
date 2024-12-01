@@ -1,15 +1,4 @@
-function NewGarmentForm({
-  /*
-  name,
-  handleNameChange,
-  imageUrl,
-  handleNewImageUrl,
-  handleRadioInput,
-  */
-  values,
-  handleChange,
-  errors,
-}) {
+function NewGarmentForm({ values, handleChange, errors }) {
   return (
     <>
       <label className="modal__label" htmlFor="name">
