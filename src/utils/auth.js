@@ -24,10 +24,10 @@ export const login = ({ email, password }) => {
   }).then(checkResponse);
 };
 
-export const editUserInfo = ({ newName, newImageUrl }, token) => {
+export const editUserInfo = ({ name, avatar }, token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
-    body: JSON.stringify({ newName, newImageUrl }),
+    body: JSON.stringify({ name, avatar }),
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,

@@ -17,8 +17,8 @@ function EditProfileModal({
   useEffect(() => {
     if (currentUser) {
       setValues({
-        newName: currentUser.name,
-        newImageUrl: currentUser.avatar,
+        name: currentUser.name,
+        avatar: currentUser.avatar,
       });
     }
   }, [currentUser]);
@@ -29,8 +29,8 @@ function EditProfileModal({
       return;
     }
     handleProfileChanges({
-      newName: values.newName,
-      newImageUrl: values.newImageUrl,
+      name: values.name,
+      avatar: values.avatar,
     });
   };
 
@@ -44,17 +44,17 @@ function EditProfileModal({
       onSubmit={handleSubmit}
       isValid={isValid}
     >
-      <label className="modal__label" htmlFor="newName">
+      <label className="modal__label" htmlFor="newname">
         Name*
       </label>
       <input
         type="text"
-        name="newName"
+        name="name"
         className="modal__input"
-        id="newName"
-        placeholder={values.newName}
+        id="newname"
+        placeholder={values.name}
         onChange={handleChange}
-        value={values.newName || ""}
+        value={values.name || ""}
         required
         minLength="2"
         maxLength="40"
@@ -70,12 +70,12 @@ function EditProfileModal({
       <input
         type="url"
         className="modal__input"
-        id="newImageUrl"
-        name="newImageUrl"
+        id="avatar"
+        name="avatar"
         pattern="https?://.+"
         onChange={handleChange}
-        placeholder={values.newImageUrl}
-        value={values.newImageUrl || ""}
+        placeholder={values.avatar}
+        value={values.avatar || ""}
         required
       ></input>
       {errors.url && (

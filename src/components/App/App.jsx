@@ -102,11 +102,11 @@ function App() {
     console.log(currentUser);
   };
 
-  const handleProfileChanges = ({ newName, newImageUrl }) => {
+  const handleProfileChanges = ({ name, avatar }) => {
     const jwt = token.getToken();
     const makeRequest = () => {
       return auth
-        .editUserInfo({ newName, newImageUrl }, jwt)
+        .editUserInfo({ name, avatar }, jwt)
         .then(
           auth.getUserInfo(jwt).then(({ data }) => {
             setCurrentUser({

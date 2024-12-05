@@ -20,7 +20,7 @@ function RegisterModal({
     handleRegistration({
       email: values.email,
       password: values.password,
-      name: values.newname,
+      name: values.name,
       avatar: values.url,
     });
     resetForm();
@@ -72,23 +72,23 @@ function RegisterModal({
       {errors.password && (
         <span className="modal__input-error_active">{errors.password}</span>
       )}
-      <label className="modal__label" htmlFor="newname">
+      <label className="modal__label" htmlFor="name">
         Name*
       </label>
       <input
         type="text"
-        name="newname"
+        name="name"
         className="modal__input"
-        id="newname"
+        id="name"
         placeholder="Name"
         onChange={handleChange}
-        value={values.newname || ""}
+        value={values.name || ""}
         required
         minLength="2"
         maxLength="40"
       ></input>
-      {errors.newname && (
-        <span className="modal__input-error_active">{errors.newname}</span>
+      {errors.name && (
+        <span className="modal__input-error_active">{errors.name}</span>
       )}
 
       <label className="modal__label" htmlFor="avatarUrl">
